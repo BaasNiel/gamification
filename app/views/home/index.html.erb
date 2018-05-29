@@ -1,6 +1,106 @@
-<h1>Welcome home </h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div class="page-wrapper">
 
-<% if user_signed_in? %>  
-  <%= link_to('Logout', destroy_user_session_path, method: :delete) %>          
-<% end %>
+  <!-- ===== Page-Container ===== -->
+  <div class="container-fluid">
+    <div class="row colorbox-group-widget">
+      <div class="col-md-4 col-sm-6 info-color-box">
+        <div class="white-box">
+          <div class="media bg-primary">
+            <div class="media-body">
+              <h3 class="info-count">1345 <span class="pull-right"><i class="fa fa-trophy"></i></span></h3>
+              <p class="info-text font-12">Total Points</p>
+              <p class="info-ot font-15">Achievements<span class="label label-rounded">160</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 info-color-box">
+        <div class="white-box">
+          <div class="media bg-success">
+            <div class="media-body">
+              <h3 class="info-count">135 <span class="pull-right"><i class="fa fa-star"></i></span></h3>
+              <p class="info-text font-12">Points this week</p>
+              <p class="info-ot font-15">Last week<span class="label label-rounded">180</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 info-color-box">
+        <div class="white-box">
+          <div class="media bg-danger">
+            <div class="media-body">
+              <h3 class="info-count">12 <span class="pull-right"><i class="fa fa-clock-o"></i></span></h3>
+              <p class="info-text font-12">Pomodoros This week</p>
+              <p class="info-ot font-15">Last Week<span class="label label-rounded">16</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="white-box">
+          <div class="task-widget2">
+            <div class="task-image">
+              <%= image_tag "achievements-header-bg.jpg", class:"img-responsive" %>
+              <div class="task-image-overlay"></div>
+              <div class="task-detail">
+                <h2 class="font-light text-white m-b-0">29 May</h2>
+                <h4 class="font-normal text-white m-t-5">Achievements Earned This Week</h4>
+              </div>
+            </div>
+
+            <div class="activity-widget" style="padding:25px;">
+              <div class="steamline">
+                <div class="sl-item">
+                  <div class="sl-left">
+                    <div class="bg-success">
+                      10
+                    </div>
+                  </div>
+                  <div class="sl-right">
+                    <div>Completed all commitments for the day</div>
+                    <p>yesterday</p>
+                  </div>
+                </div>
+                <div class="sl-item">
+                  <div class="sl-left">
+                    <div class="bg-danger">
+                      -10
+                    </div>
+                  </div>
+                  <div class="sl-right">
+                    <div>Coffee was bad</div>
+                    <p>2 days ago</p>
+                  </div>
+                </div>
+                <div class="sl-item">
+                  <div class="sl-left">
+                    <div class="bg-success">
+                      10
+                    </div>
+                  </div>
+                  <div class="sl-right">
+                    <div>Made Niel some coffee</div>
+                    <p>2 days ago</p>
+                  </div>
+                </div>
+                <div class="sl-item">
+                  <div class="sl-left">
+                    <div class="bg-danger">
+                      -10
+                    </div>
+                  </div>
+                  <div class="sl-right">
+                    <div>Failed to complete all commitments</div>
+                    <p>3 days ago</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

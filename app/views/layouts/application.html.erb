@@ -8,7 +8,13 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="mini-sidebar">
+    <div id="wrapper">
+      <%= render 'shared/navbar' %>
+      <%= render 'shared/sidebar' %>
+      <%= yield %>
+      <%= render 'shared/quick-settings' %>
+      <%= render 'shared/footer' %>
+    </div>
   </body>
 </html>
