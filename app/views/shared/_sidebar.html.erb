@@ -11,10 +11,10 @@
     <nav class="sidebar-nav">
       <ul id="side-menu">
         <li>
-          <a class="waves-effect" href="javascript:void(0);" aria-expanded="false">
+          <%= link_to('/', class:"waves-effect") do %>
             <i class="icon-screen-desktop fa-fw"></i>
-            <span class="hide-menu"> Dashboard </span>
-          </a>
+            <span> Dashboard </span>
+          <% end %>
         </li>
       </ul>
     </nav>
