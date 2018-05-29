@@ -33,7 +33,7 @@ $(function() {
 
   /* ========== Disabling Preloader ========== */
 
-  $(".preloader").fadeOut();
+  $(".preloader").fadeOut('slow');
 
   /* ========== Changes Takes Place On Body Resize Event ========== */
 
