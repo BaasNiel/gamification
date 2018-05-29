@@ -18,14 +18,14 @@
 //= require waves
 //= require sidebarmenu
 //= require_self
-// 
+//
 //= require chartist.min
 //= require chartist-plugin-tooltip
 //= require jquery.sparkline.min
 //= require jquery.charts-sparkline
 //= require jquery.knob
 //= require jquery.easypiechart
-//= require db1
+
 
 $(function() {
 
