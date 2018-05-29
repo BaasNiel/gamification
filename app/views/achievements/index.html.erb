@@ -1,31 +1,61 @@
-<p id="notice"><%= notice %></p>
+<div class="container-fluid">
+  <div class="white-box user-table">
+    <div class="row">
+      <div class="col-sm-6">
+        <h4 class="box-title">Available Achievements</h4>
+      </div>
+      <div class="col-sm-6">
+        <%= link_to new_achievement_path, class:"btn btn-success pull-right m-t-10 font-20" do %>
+          +
+        <% end %>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>
+              <div class="checkbox checkbox-info">
+                <input id="c1" type="checkbox">
+                <label for="c1"></label>
+              </div>
+            </th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Points</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @achievements.each do |achievement| %>
+            <tr>
+              <td>
+                <div class="checkbox checkbox-info">
+                  <input id="c2" type="checkbox">
+                  <label for="c2"></label>
+                </div>
+              </td>
+              <td>
+                <%= link_to achievement, class:"text-link" do %>
+                  <%= achievement.title %>
+                <% end %>
+              </td>
+              <td> <%= achievement.description %>  </td>
+              <td><span class="label label-success"> <%= achievement.points %> </span></td>
+              <td>
+                <%= link_to achievement, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                  <i class="fa fa-trash"></i>
+                <% end %>
+                <%= link_to edit_achievement_path(achievement) do %>
+                  <i class="fa fa-pencil"></i>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
-<h1>Achievements</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Points</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @achievements.each do |achievement| %>
-      <tr>
-        <td><%= achievement.title %></td>
-        <td><%= achievement.description %></td>
-        <td><%= achievement.points %></td>
-        <td><%= link_to 'Show', achievement %></td>
-        <td><%= link_to 'Edit', edit_achievement_path(achievement) %></td>
-        <td><%= link_to 'Destroy', achievement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Achievement', new_achievement_path %>
+  <p id="notice"><%= notice %></p>
+</div>

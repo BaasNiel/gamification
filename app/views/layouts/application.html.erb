@@ -12,7 +12,11 @@
     <div id="wrapper">
       <%= render 'shared/navbar' %>
       <%= render 'shared/sidebar' %>
-      <%= yield %>
+
+      <div class="page-wrapper">
+        <%= yield %>
+      </div>
+
       <%= render 'shared/quick-settings' %>
       <%= render 'shared/footer' %>
     </div>
