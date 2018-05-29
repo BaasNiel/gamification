@@ -33,6 +33,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'rubocop', '~> 0.49.0'
 gem 'jquery-rails'
+gem 'active_link_to'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
