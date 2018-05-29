@@ -31,7 +31,7 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
-gem 'rubocop'
+gem 'rubocop', '~> 0.49.0'
 gem 'jquery-rails'
 
 # Use Capistrano for deployment
