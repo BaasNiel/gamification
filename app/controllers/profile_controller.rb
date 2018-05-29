@@ -1,4 +1,4 @@
-class HomeController < ApplicationController
+class ProfileController < ApplicationController
   def index
 
     if params[:id].present?
