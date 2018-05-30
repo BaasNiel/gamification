@@ -11,9 +11,15 @@
     <nav class="sidebar-nav">
       <ul id="side-menu">
         <li>
-          <%= link_to('/', class:"waves-effect") do %>
+          <%= active_link_to('/', class:"waves-effect", active: [['profile'], []]) do %>
             <i class="icon-screen-desktop fa-fw"></i>
             <span> Dashboard </span>
+          <% end %>
+        </li>
+        <li>
+          <%= active_link_to(achievements_path, class:"waves-effect") do %>
+            <i class="icon-trophy fa-fw"></i>
+            <span> Achievements </span>
           <% end %>
         </li>
       </ul>
