@@ -19,7 +19,6 @@ class InvitationsController < Devise::InvitationsController
   protected
 
   def update_sanitized_params
-    byebug
     devise_parameter_sanitizer.permit(:accept_invitation, keys: [:name, :password, :password_confirmation, :invitation_token, :first_name, :last_name])
   end
 end
