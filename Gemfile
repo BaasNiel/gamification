@@ -31,6 +31,7 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
+gem 'devise_invitable', '~> 1.7.0'
 gem 'rubocop', '~> 0.49.0'
 gem 'jquery-rails'
 gem 'active_link_to'

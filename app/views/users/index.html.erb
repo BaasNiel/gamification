@@ -1,0 +1,59 @@
+<div class="container-fluid">
+  <div class="white-box user-table">
+    <div class="row">
+      <div class="col-sm-6">
+        <h4 class="box-title">Users</h4>
+      </div>
+      <div class="col-sm-6">
+        <%= link_to new_user_path, class:"btn btn-success pull-right m-t-10 font-20" do %>
+          +
+        <% end %>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>
+              <div class="checkbox checkbox-info">
+                <input id="c1" type="checkbox">
+                <label for="c1"></label>
+              </div>
+            </th>
+            <th>Id</th>
+            <th>Email</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td>
+                <div class="checkbox checkbox-info">
+                  <input id="c2" type="checkbox">
+                  <label for="c2"></label>
+                </div>
+              </td>
+              <td>
+                <%= link_to user, class:"text-link" do %>
+                  <%= user.id %>
+                <% end %>
+              </td>
+              <td> <%= user.email %>  </td>
+              <td>
+                <%= link_to user, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                  <i class="fa fa-trash"></i>
+                <% end %>
+                <%= link_to edit_user_path(user) do %>
+                  <i class="fa fa-pencil"></i>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <p id="notice"><%= notice %></p>
+</div>
