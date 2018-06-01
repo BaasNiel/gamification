@@ -5,7 +5,7 @@
         <div class="profile-image">
           <%= image_tag "avatar.png", class: "img-circle" %>
         </div>
-        <p class="profile-text m-t-15 font-16"><a href="javascript:void(0);"> Niel Sarvari</a></p>
+        <p class="profile-text m-t-15 font-16"><a href="javascript:void(0);"> <%= current_user.first_name %> <%= current_user.last_name %> </a></p>
       </div>
     </div>
     <nav class="sidebar-nav">

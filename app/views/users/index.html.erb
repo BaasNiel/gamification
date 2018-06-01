@@ -22,6 +22,8 @@
             </th>
             <th>Id</th>
             <th>Email</th>
+            <th>Name</th>
+            <th>Status</th>
             <th></th>
           </tr>
         </thead>
@@ -40,6 +42,14 @@
                 <% end %>
               </td>
               <td> <%= user.email %>  </td>
+              <td> <%= user.first_name %> <%= user.last_name %>  </td>
+              <td>
+                <% if user.invitation_accepted_at.present?  %>
+                  <span class="label label-success">Accepted</span>
+                <% else %>
+                  <span class="label label-warning">Invited</span>
+                <% end %>
+              </td>
               <td>
                 <%= link_to user, method: :delete, data: { confirm: 'Are you sure?' } do %>
                   <i class="fa fa-trash"></i>
