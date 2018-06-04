@@ -12,7 +12,11 @@
 
           <div class="dropify-preview" style="display: block;">
             <span class="dropify-render">
-              <img src="https://www.rd.com/wp-content/uploads/2018/02/19_Adorable-Puppy-Pictures-that-Will-Make-You-Melt_391191067_chris_tina-760x506.jpg">
+              <% if @user.avatar? %>
+                <%= image_tag @user.avatar_url, class: "img-circle" %>
+              <% else %>
+                <%= image_tag "avatar-placeholder.png", class: "img-circle" %>
+              <% end %>
             </span>
             <div class="dropify-infos">
               <div class="dropify-infos-inner">
