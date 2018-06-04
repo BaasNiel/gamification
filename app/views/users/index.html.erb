@@ -21,8 +21,8 @@
               </div>
             </th>
             <th>Id</th>
-            <th>Email</th>
             <th>Name</th>
+            <th>Email</th>
             <th>Status</th>
             <th></th>
           </tr>
@@ -37,13 +37,18 @@
                 </div>
               </td>
               <td>
-                <%= link_to user, class:"text-link" do %>
-                  <%= user.id %>
-                <% end %>
+                <%= user.id %>
               </td>
-              <td> <%= user.email %>  </td>
-              <td> <%= user.first_name %> <%= user.last_name %>  </td>
               <td>
+                <%= link_to user, class:"text-link" do %>
+                  <%= user.first_name %> <%= user.last_name %>  </td>
+                <% end %>
+              <td> <%= user.email %>  </td>
+              <td>
+                <% if user.admin?  %>
+                <span class="label label-info">Admin</span>
+                <% end %>
+
                 <% if user.invitation_accepted_at.present?  %>
                   <span class="label label-success">Accepted</span>
                 <% else %>

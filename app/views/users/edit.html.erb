@@ -1,6 +1,29 @@
 <h1>Editing User</h1>
 
-<%= render 'form', user: @user %>
+<%= form_for @user, :as => @user, :url => user_path(@user), :html => {:method => :patch} do |f| %>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email, id: :user_email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, id: :user_first_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, id: :user_last_name %>
+  </div>
+
+  <% if current_user.admin? %>
+    <div class="field">
+      <%= f.label :admin %>
+      <%= f.check_box :admin %>
+    </div>
+  <% end %>
+
+  <p><%= f.submit "Submit" %></p>
+  <%= link_to 'Back', users_path %>
+<% end %>

@@ -41,8 +41,11 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+      if !current_user.admin? && user_params[:admin].present?
+        format.html { redirect_to users_path, notice: 'Can\'t change admin status if you aren\'t admin' }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      elsif @user.update(user_params)
+        format.html { redirect_to users_path, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -69,6 +72,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:title, :description, :points)
+      params.require(:user).permit(:email, :first_name, :last_name, :admin)
     end
 end
