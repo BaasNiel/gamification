@@ -35,6 +35,7 @@ gem 'devise_invitable', '~> 1.7.0'
 gem 'rubocop', '~> 0.49.0'
 gem 'jquery-rails'
 gem 'active_link_to'
+gem 'carrierwave', '~> 1.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
