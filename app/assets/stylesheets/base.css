@@ -4,26 +4,26 @@
 
 01. Necessary File Imports (e.g. Fonts, Icon-Fonts, Third Party CSS Plugins)
 02. Preloader CSS
-03. CSS Compiled From "common.less" 
+03. CSS Compiled From "common.less"
     => (includes all the common/global styles which are applicable throughout the project)
-04. CSS Compiled From "widgets.less" 
+04. CSS Compiled From "widgets.less"
     => (includes the styles of all the inner page widgets)
-05. CSS Compiled From "app.less" 
+05. CSS Compiled From "app.less"
     => (includes the styles of all the dashboard widgets)
-06. CSS Compiled From "sidebar-nav.less" 
+06. CSS Compiled From "sidebar-nav.less"
     => (includes the styles of sidebar navigation)
 07. Simple Line Icons
 08. Themify Icons
 09. Font Awesome Icons
-10. CSS Compiled From "pages.less" 
+10. CSS Compiled From "pages.less"
     => (includes the styles of inner pages)
-11. CSS Compiled From "responsive.less" 
+11. CSS Compiled From "responsive.less"
     => (includes the styles for responsiveness of the template)
 
 ------------------------------
 [Default Color Codes Used In The Project]
 
-# topbar-gradient:      #0078bc; & #00beda;                         
+# topbar-gradient:      #0078bc; & #00beda;
 # sidebar:              #ffffff;
 # bodycolor:            #f4f8f9;
 # headingtext:          #333b3f;
@@ -46,12 +46,12 @@
 # extralight:           #f7fafc;
 # red:                  #d93c17;
 # purple:               #4a23ad;
- 
+
 # white:                #ffffff;
 # muted:                #8d9498;
 # blue:                 #0078bc;
 # border:               rgba(255,255,255,0.2);
-# common:               #e5ebec; 
+# common:               #e5ebec;
 
 ============================================================ */
 
@@ -7340,10 +7340,10 @@ ul.list-icons li i {
 @font-face {
     font-family: simple-line-icons;
     src: url(Simple-Line-Icons.eot);
-    src: url(Simple-Line-Icons.eot?#iefix) format('embedded-opentype'), 
-        url(Simple-Line-Icons.ttf) format('truetype'), 
-        url(Simple-Line-Icons.woff2) format('woff2'), 
-        url(Simple-Line-Icons.woff) format('woff'), 
+    src: url(Simple-Line-Icons.eot?#iefix) format('embedded-opentype'),
+        url(Simple-Line-Icons.ttf) format('truetype'),
+        url(Simple-Line-Icons.woff2) format('woff2'),
+        url(Simple-Line-Icons.woff) format('woff'),
         url(Simple-Line-Icons.svg?-i3a2kk#simple-line-icons) format('svg');
     font-weight: 400;
     font-style: normal
@@ -8278,9 +8278,9 @@ ul.list-icons li i {
 @font-face {
     font-family: themify;
     src: url(themify.eot);
-    src: url(themify.eot?#iefix) format('embedded-opentype'), 
-        url(themify.woff) format('woff'), 
-        url(themify.ttf) format('truetype'), 
+    src: url(themify.eot?#iefix) format('embedded-opentype'),
+        url(themify.woff) format('woff'),
+        url(themify.ttf) format('truetype'),
         url(themify.svg?-fvbane#themify) format('svg');
     font-weight: 400;
     font-style: normal
@@ -9716,10 +9716,10 @@ ul.list-icons li i {
 @font-face {
     font-family: FontAwesome;
     src: url(fontawesome-webfont.eot?v=4.5.0);
-    src: url(fontawesome-webfont.eot?#iefix&v=4.5.0) format('embedded-opentype'), 
-        url(fontawesome-webfont.woff2?v=4.5.0) format('woff2'), 
-        url(fontawesome-webfont.woff?v=4.5.0) format('woff'), 
-        url(fontawesome-webfont.ttf?v=4.5.0) format('truetype'), 
+    src: url(fontawesome-webfont.eot?#iefix&v=4.5.0) format('embedded-opentype'),
+        url(fontawesome-webfont.woff2?v=4.5.0) format('woff2'),
+        url(fontawesome-webfont.woff?v=4.5.0) format('woff'),
+        url(fontawesome-webfont.ttf?v=4.5.0) format('truetype'),
         url(fontawesome-webfont.svg?v=4.5.0#fontawesomeregular) format('svg');
     font-weight: 400;
     font-style: normal
