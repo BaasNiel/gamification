@@ -19,6 +19,7 @@
 //= require sidebarmenu
 //= require_self
 //= require users
+//= require achievements
 //
 //= require chartist.min
 //= require chartist-plugin-tooltip

@@ -1,0 +1,41 @@
+<div class="container-fluid">
+  <div class="white-box col-md-12">
+    <div class="row">
+      <div class="col-sm-6">
+        <h4 class="box-title">Assign to <%= @user.first_name %> <%= @user.last_name %> </h4>
+      </div>
+    </div>
+    <%= form_tag assign_create_path, {id: "assign-achievement-form"} do %>
+      <%= hidden_field_tag 'user_id', @user.id %>
+      <%= hidden_field_tag 'achievement_id', 0 %>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Points</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @achievements.each do |achievement| %>
+            <tr class="achievement-row" data-achievement-id="<%= achievement.id %>">
+              <td><span class="label label-success"> <%= achievement.points %> </span></td>
+              <td> <%= achievement.title %> </td>
+              <td> <%= achievement.description %>  </td>
+              <td>
+                <button type="submit" class="btn btn-info waves-effect waves-light submit-assign-achievement">
+                  Assign to <%= @user.first_name %>
+                </button>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+
+    <%= notice %>
+  </div>
+</div>
