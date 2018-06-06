@@ -18,6 +18,7 @@
 //= require waves
 //= require sidebarmenu
 //= require_self
+//= require users
 //
 //= require chartist.min
 //= require chartist-plugin-tooltip

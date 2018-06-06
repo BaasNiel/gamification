@@ -31,9 +31,11 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
+gem 'devise_invitable', '~> 1.7.0'
 gem 'rubocop', '~> 0.49.0'
 gem 'jquery-rails'
 gem 'active_link_to'
+gem 'carrierwave', '~> 1.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -41,9 +43,11 @@ gem 'active_link_to'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem "pry-byebug"
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'letter_opener'
 end
 
 group :development do

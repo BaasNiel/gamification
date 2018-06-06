@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: {
+  invitations: "invitations"
+}
+
   resources :achievements
-  devise_for :users
+  resources :users
 
   get "profile/index"
   get "profile", to: "profile#index"

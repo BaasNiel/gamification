@@ -1,0 +1,9 @@
+<%= form_for user, :as => user, :url => invitation_path(user), :html => {:method => :post} do |f| %>
+
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email, id: :user_email %>
+  </div>
+
+  <p><%= f.submit "Invite" %></p>
+<% end %>
