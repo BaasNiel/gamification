@@ -1,61 +1,73 @@
 <div class="container-fluid">
 
-  <%= form_for @user, :as => @user, :url => user_path(@user), :html => {:method => :patch} do |f| %>
+  <%= form_for @user, :as => @user, :url => user_path(@user), :html => {:method => :patch, :class => "form-horizontal"} do |f| %>
 
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
       <div class="white-box">
-        <h2> <%= @user.first_name %> <%= @user.last_name %> </h2>
+        <h3 class="box-title"><%= @user.first_name %> <%= @user.last_name %></h3>
+        <div class="col-sm-offset-3 col-sm-9 m-b-20">
 
-        <div class="dropify-wrapper has-preview">
-          <%= f.file_field :avatar, class:'dropify' %>
-
-          <div class="dropify-preview" style="display: block;">
-            <span class="dropify-render">
-              <% if @user.avatar? %>
-                <%= image_tag @user.avatar_url, class: "img-circle" %>
-              <% else %>
-                <%= image_tag "avatar-placeholder.png", class: "img-circle" %>
-              <% end %>
-            </span>
-            <div class="dropify-infos">
-              <div class="dropify-infos-inner">
-                <p class="dropify-filename">
-                  <span class="dropify-filename-inner">
-                    <i class="fa fa-cloud-upload"></i>
-                  </span>
-                </p>
+          <div class="dropify-wrapper has-preview">
+            <%= f.file_field :avatar, class:'dropify' %>
+            <div class="dropify-preview" style="display: block;">
+              <span class="dropify-render">
+                <% if @user.avatar? %>
+                  <%= image_tag @user.avatar_url, class: "img-circle" %>
+                <% else %>
+                  <%= image_tag "avatar-placeholder.png", class: "img-circle" %>
+                <% end %>
+              </span>
+              <div class="dropify-infos">
+                <div class="dropify-infos-inner">
+                  <p class="dropify-filename">
+                    <span class="dropify-filename-inner">
+                      <i class="fa fa-cloud-upload"></i>
+                    </span>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- <%= f.file_field :avatar, class:'dropify avatar-upload' %> -->
-
-        <div class="field">
-          <%= f.label :email %>
-          <%= f.text_field :email, id: :user_email %>
+        <div class="form-group">
+          <%= f.label :email, class: "col-sm-3 control-label" %>
+          <div class="col-md-9">
+            <%= f.text_field :email, id: :user_email, class: "form-control" %>
+          </div>
         </div>
 
-        <div class="field">
-          <%= f.label :first_name %>
-          <%= f.text_field :first_name, id: :user_first_name %>
+        <div class="form-group">
+          <%= f.label :first_name, class: "col-sm-3 control-label" %>
+          <div class="col-md-9">
+            <%= f.text_field :first_name, id: :user_first_name, class: "form-control" %>
+          </div>
         </div>
 
-        <div class="field">
-          <%= f.label :last_name %>
-          <%= f.text_field :last_name, id: :user_last_name %>
+        <div class="form-group">
+          <%= f.label :last_name, class: "col-sm-3 control-label" %>
+          <div class="col-md-9">
+            <%= f.text_field :last_name, id: :user_last_name, class: "form-control" %>
+          </div>
         </div>
 
         <% if current_user.admin? %>
-        <div class="field">
-          <%= f.label :admin %>
-          <%= f.check_box :admin %>
-        </div>
+          <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-9">
+              <div class="checkbox checkbox-success">
+                <%= f.check_box :admin %>
+                <%= f.label :admin %>
+              </div>
+            </div>
+          </div>
         <% end %>
 
-        <p><%= f.submit "Submit" %></p>
-        <%= link_to 'Back', users_path %>
+        <div class="form-group m-b-0">
+          <div class="col-sm-offset-3 col-sm-9">
+            <button type="submit" class="btn btn-info waves-effect waves-light m-t-10">Submit</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
