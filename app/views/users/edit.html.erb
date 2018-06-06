@@ -9,13 +9,13 @@
         <div class="col-sm-offset-3 col-sm-9 m-b-20">
 
           <div class="dropify-wrapper has-preview">
-            <%= f.file_field :avatar, class:'dropify' %>
+            <%= f.file_field :avatar, class:'dropify', id:'avatar-input' %>
             <div class="dropify-preview" style="display: block;">
               <span class="dropify-render">
                 <% if @user.avatar? %>
-                  <%= image_tag @user.avatar_url, class: "img-circle" %>
+                  <%= image_tag @user.avatar_url, class: "img-circle", id: "user-avatar" %>
                 <% else %>
-                  <%= image_tag "avatar-placeholder.png", class: "img-circle" %>
+                  <%= image_tag "avatar-placeholder.png", class: "img-circle", id: "user-avatar" %>
                 <% end %>
               </span>
               <div class="dropify-infos">
@@ -57,7 +57,7 @@
             <div class="col-sm-offset-3 col-sm-9">
               <div class="checkbox checkbox-success">
                 <%= f.check_box :admin %>
-                <%= f.label :admin %>
+                <%= f.label :admin, id: "admin-label" %>
               </div>
             </div>
           </div>
