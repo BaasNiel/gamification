@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require rails-ujs
-//= require turbolinks
 //= require bootstrap
 //= require jquery.slimscroll
 //= require waves
