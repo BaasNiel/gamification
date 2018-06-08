@@ -67,14 +67,25 @@ class AchievementsController < ApplicationController
   end
 
   def assign_create
-    achievement_id = params[:achievement_id]
-    user_id = params[:user_id]
+    user = User.find params[:user_id]
+    achievement = Achievement.find params[:achievement_id]
+
+    @assigned_achievement = UserAchievement.new
+    @assigned_achievement.user = user
+    @assigned_achievement.achievement = achievement
 
     respond_to do |format|
-      format.html {
-        redirect_to assign_index_path(user_id),
-        notice: "Achievement awarded"
-      }
+      if @assigned_achievement.save
+        format.html {
+          redirect_to assign_index_path(user),
+          notice: "\"#{achievement.title}\" awarded to #{user.first_name}"
+        }
+      else
+        format.html {
+          redirect_to assign_index_path(user),
+          notice: "Achievement could not be awarded"
+        }
+      end
     end
   end
 
