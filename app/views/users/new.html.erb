@@ -1,9 +1,37 @@
-<%= form_for @user, :as => @user, :url => invitation_path(@user), :html => {:method => :post} do |f| %>
+<!-- Invite user field -->
+<div class="container-fluid">
 
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email, id: :user_email %>
-  </div>
+  <%= form_for @user, :as => @user, :url => invitation_path(@user), :html => {:method => :post, :class => "form-horizontal"} do |f| %>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="white-box">
+          <h3 class="box-title">Invite a User</h3>
 
-  <p><%= f.submit "Invite" %></p>
-<% end %>
+          <div class="form-group">
+            <%= f.label :email, class: "col-sm-1 control-label" %>
+            <div class="col-sm-11">
+              <%= f.text_field :email, id: :user_email, class: "form-control" %>
+            </div>
+          </div>
+
+          <% if current_user.admin? %>
+            <div class="form-group">
+              <%= f.label :team, class: "col-sm-1 control-label" %>
+              <div class="col-md-11">
+                  <%= f.select :team_id, options_for_teams, {prompt: true}, class: "form-control" %>
+              </div>
+            </div>
+          <% else %>
+            <%= f.hidden_field :team_id, :value => current_user.team.id %>
+          <% end %>
+
+          <div class="form-group m-b-0">
+            <div class="col-sm-offset-1 col-sm-11">
+              <button type="submit" class="btn btn-info waves-effect waves-light m-t-10">Invite</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
