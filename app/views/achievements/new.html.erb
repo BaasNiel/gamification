@@ -1,5 +1,10 @@
-<h1>New Achievement</h1>
-
-<%= render 'form', achievement: @achievement %>
-
-<%= link_to 'Back', achievements_path %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="white-box">
+        <h3 class="box-title">New Achievement</h3>
+        <%= render 'form', achievement: @achievement %>
+      </div>
+    </div>
+  </div>
+</div>

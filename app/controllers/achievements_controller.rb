@@ -4,7 +4,7 @@ class AchievementsController < ApplicationController
   # GET /achievements
   # GET /achievements.json
   def index
-    if !current_user.admin?
+    if current_user.admin?
       @achievements = Achievement.all
     else
       @achievements = current_user.team.achievements
@@ -101,6 +101,6 @@ class AchievementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def achievement_params
-      params.require(:achievement).permit(:title, :description, :points)
+      params.require(:achievement).permit(:title, :description, :points, :team_id)
     end
 end
