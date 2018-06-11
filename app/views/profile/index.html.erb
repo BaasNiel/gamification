@@ -4,9 +4,9 @@
       <div class="white-box">
         <div class="media bg-primary">
           <div class="media-body">
-            <h3 class="info-count">1345 <span class="pull-right"><i class="fa fa-trophy"></i></span></h3>
+            <h3 class="info-count"> <%= @user.total_points %> <span class="pull-right"><i class="fa fa-trophy"></i></span></h3>
             <p class="info-text font-12">Total Points</p>
-            <p class="info-ot font-15">Achievements<span class="label label-rounded">160</span></p>
+            <p class="info-ot font-15">Achievements<span class="label label-rounded"> <%= @user.earned_achievements.count %> </span></p>
           </div>
         </div>
       </div>
@@ -42,57 +42,38 @@
             <%= image_tag "achievements-header-bg.jpg", class:"img-responsive" %>
             <div class="task-image-overlay"></div>
             <div class="task-detail">
-              <h2 class="font-light text-white m-b-0">29 May</h2>
+              <h2 class="font-light text-white m-b-0" id="today-date"> <%= Time.now.rfc2822 %> </h2>
               <h4 class="font-normal text-white m-t-5">Achievements Earned This Week</h4>
             </div>
           </div>
 
           <div class="activity-widget" style="padding:25px;">
             <div class="steamline">
-              <div class="sl-item">
-                <div class="sl-left">
-                  <div class="bg-success">
-                    10
+              <% @user_achievements.each do |ua| %>
+                <div class="sl-item">
+                  <div class="sl-left">
+                    <% if ua.achievement.points > 0 %>
+                      <div class="bg-success">
+                        <%= ua.achievement.points %>
+                      </div>
+                    <% else %>
+                      <div class="bg-danger">
+                        <%= ua.achievement.points %>
+                      </div>
+                    <% end %>
+                  </div>
+                  <div class="sl-right">
+                    <div> <%= ua.achievement.description %> </div>
+                    <p class="time-ago">
+                      <% if ua.date_achieved? %>
+                        <%= ua.date_achieved.rfc2822 %>
+                      <% else  %>
+                        <%= ua.created_at.rfc2822 %>
+                      <% end  %>
+                    </p>
                   </div>
                 </div>
-                <div class="sl-right">
-                  <div>Completed all commitments for the day</div>
-                  <p>yesterday</p>
-                </div>
-              </div>
-              <div class="sl-item">
-                <div class="sl-left">
-                  <div class="bg-danger">
-                    -10
-                  </div>
-                </div>
-                <div class="sl-right">
-                  <div>Coffee was bad</div>
-                  <p>2 days ago</p>
-                </div>
-              </div>
-              <div class="sl-item">
-                <div class="sl-left">
-                  <div class="bg-success">
-                    10
-                  </div>
-                </div>
-                <div class="sl-right">
-                  <div>Made Niel some coffee</div>
-                  <p>2 days ago</p>
-                </div>
-              </div>
-              <div class="sl-item">
-                <div class="sl-left">
-                  <div class="bg-danger">
-                    -10
-                  </div>
-                </div>
-                <div class="sl-right">
-                  <div>Failed to complete all commitments</div>
-                  <p>3 days ago</p>
-                </div>
-              </div>
+              <% end %>
             </div>
           </div>
         </div>

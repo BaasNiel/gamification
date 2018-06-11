@@ -61,6 +61,34 @@ class AchievementsController < ApplicationController
     end
   end
 
+  def assign_index
+    @user = User.find(params[:id])
+    @achievements = Achievement.all
+  end
+
+  def assign_create
+    user = User.find params[:user_id]
+    achievement = Achievement.find params[:achievement_id]
+
+    @assigned_achievement = UserAchievement.new
+    @assigned_achievement.user = user
+    @assigned_achievement.achievement = achievement
+
+    respond_to do |format|
+      if @assigned_achievement.save
+        format.html {
+          redirect_to assign_index_path(user),
+          notice: "\"#{achievement.title}\" awarded to #{user.first_name}"
+        }
+      else
+        format.html {
+          redirect_to assign_index_path(user),
+          notice: "Achievement could not be awarded"
+        }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_achievement

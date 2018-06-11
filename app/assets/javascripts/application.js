@@ -12,13 +12,14 @@
 //
 //= require jquery
 //= require rails-ujs
-//= require turbolinks
 //= require bootstrap
 //= require jquery.slimscroll
 //= require waves
 //= require sidebarmenu
 //= require_self
 //= require users
+//= require achievements
+//= require profile
 //
 //= require chartist.min
 //= require chartist-plugin-tooltip
@@ -26,6 +27,7 @@
 //= require jquery.charts-sparkline
 //= require jquery.knob
 //= require jquery.easypiechart
+//= require moment
 
 
 $(function() {

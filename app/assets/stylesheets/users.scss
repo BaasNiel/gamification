@@ -23,3 +23,18 @@
 #admin-label {
   padding-left: 10px !important;
 }
+
+.action {
+  font-size: 18px;
+  color: #333b3f;
+  margin: 0 5px;
+}
+.action.delete {
+  color: #e74a25;
+}
+.action.edit {
+  color: #00bbd9;
+}
+.action.assign {
+  color: #ffb136;
+}
