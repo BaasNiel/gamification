@@ -17,11 +17,11 @@
             <th>Points</th>
             <th>Title</th>
             <th>Description</th>
+            <th>Times Earned</th>
             <% if current_user.admin? %>
               <th>Status</th>
               <th></th> <!-- Actions -->
             <% end %>
-            <% if current_user.admin? %> <th></th> <% end %>
           </tr>
         </thead>
         <tbody>
@@ -40,6 +40,11 @@
                 <% end %>
               </td>
               <td> <%= achievement.description %>  </td>
+              <td>
+                <span class="badge badge-success">
+                  <%= current_user.times_earned achievement %>
+                </span>
+              </td>
               <% if current_user.admin? %>
                 <td>
                   <% if achievement.approved? %>

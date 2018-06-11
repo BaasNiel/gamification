@@ -17,4 +17,8 @@ class User < ApplicationRecord
   def total_points
     earned_achievements.map(&:points).sum
   end
+
+  def times_earned(achievement)
+    self.user_achievements.map(&:achievement_id).count(achievement.id)
+  end
 end
