@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :user_achievements
   has_many :achievements, :through => :user_achievements
 
+  belongs_to :team
+
   def earned_achievements
     self.user_achievements.map(&:achievement)
   end
