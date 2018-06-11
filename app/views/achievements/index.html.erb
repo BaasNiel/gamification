@@ -17,6 +17,10 @@
             <th>Points</th>
             <th>Title</th>
             <th>Description</th>
+            <% if current_user.admin? %>
+              <th>Status</th>
+              <th></th> <!-- Actions -->
+            <% end %>
             <% if current_user.admin? %> <th></th> <% end %>
           </tr>
         </thead>
@@ -37,6 +41,13 @@
               </td>
               <td> <%= achievement.description %>  </td>
               <% if current_user.admin? %>
+                <td>
+                  <% if achievement.approved? %>
+                    <span class="label label-success"> Approved </span>
+                  <% else %>
+                    <span class="label label-danger"> Pending Approval </span>
+                  <% end %>
+                </td>
                 <td>
                   <%= link_to edit_achievement_path(achievement), { data: { toggle: "tooltip", original_title: "Edit" } } do %>
                   <i class="fa fa-pencil action edit"></i>

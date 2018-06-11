@@ -36,11 +36,22 @@
     <div class="form-group">
       <%= f.label :team, class: "col-sm-3 control-label" %>
       <div class="col-md-9">
-          <%= f.select :team_id, options_for_teams, {prompt: true}, class: "form-control" %>
+        <%= f.select :team_id, options_for_teams, {prompt: true}, class: "form-control" %>
       </div>
     </div>
   <% else %>
     <%= f.hidden_field :team_id, :value => current_user.team.id %>
+  <% end %>
+
+  <% if current_user.admin? %>
+    <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-9">
+        <div class="checkbox checkbox-success">
+          <%= f.check_box :approved, id: "achievement_approved" %>
+          <%= f.label :approved, class: "checkbox-label" %>
+        </div>
+      </div>
+    </div>
   <% end %>
 
   <div class="form-group m-b-0">
