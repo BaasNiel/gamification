@@ -66,9 +66,9 @@
                     <div> <%= ua.achievement.description %> </div>
                     <p class="time-ago">
                       <% if ua.date_achieved? %>
-                        <%= ua.date_achieved %>
+                        <%= ua.date_achieved.rfc2822 %>
                       <% else  %>
-                        <%= ua.created_at %>
+                        <%= ua.created_at.rfc2822 %>
                       <% end  %>
                     </p>
                   </div>
