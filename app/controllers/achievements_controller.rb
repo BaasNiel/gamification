@@ -4,7 +4,11 @@ class AchievementsController < ApplicationController
   # GET /achievements
   # GET /achievements.json
   def index
-    @achievements = Achievement.all
+    if !current_user.admin?
+      @achievements = Achievement.all
+    else
+      @achievements = current_user.team.achievements
+    end
   end
 
   # GET /achievements/1
