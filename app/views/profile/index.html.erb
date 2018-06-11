@@ -4,9 +4,9 @@
       <div class="white-box">
         <div class="media bg-primary">
           <div class="media-body">
-            <h3 class="info-count">1345 <span class="pull-right"><i class="fa fa-trophy"></i></span></h3>
+            <h3 class="info-count"> <%= @user.total_points %> <span class="pull-right"><i class="fa fa-trophy"></i></span></h3>
             <p class="info-text font-12">Total Points</p>
-            <p class="info-ot font-15">Achievements<span class="label label-rounded">160</span></p>
+            <p class="info-ot font-15">Achievements<span class="label label-rounded"> <%= @user.earned_achievements.count %> </span></p>
           </div>
         </div>
       </div>
