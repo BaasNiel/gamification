@@ -1,6 +1,15 @@
 class InvitationsController < Devise::InvitationsController
   before_action :update_sanitized_params, only: :update
 
+  def create
+    super
+
+    if self.resource.present? && params[:user][:team_id].present?
+      self.resource.team_id = params[:user][:team_id]
+      self.resource.save
+    end
+  end
+
   # PUT /resource/invitation
   def update
     respond_to do |format|

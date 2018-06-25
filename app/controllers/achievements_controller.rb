@@ -4,7 +4,11 @@ class AchievementsController < ApplicationController
   # GET /achievements
   # GET /achievements.json
   def index
-    @achievements = Achievement.all
+    if current_user.admin?
+      @achievements = Achievement.all
+    else
+      @achievements = current_user.team.achievements.where(:approved => true)
+    end
   end
 
   # GET /achievements/1
@@ -28,8 +32,13 @@ class AchievementsController < ApplicationController
 
     respond_to do |format|
       if @achievement.save
-        format.html { redirect_to @achievement, notice: 'Achievement was successfully created.' }
-        format.json { render :show, status: :created, location: @achievement }
+        if current_user.admin?
+          format.html { redirect_to achievements_path, notice: 'Achievement was successfully created.' }
+          format.json { render :show, status: :created, location: @achievement }
+        else
+          format.html { redirect_to achievements_path, notice: 'Achievement was submitted for approval.' }
+          format.json { render :show, status: :created, location: @achievement }
+        end
       else
         format.html { render :new }
         format.json { render json: @achievement.errors, status: :unprocessable_entity }
@@ -42,7 +51,7 @@ class AchievementsController < ApplicationController
   def update
     respond_to do |format|
       if @achievement.update(achievement_params)
-        format.html { redirect_to @achievement, notice: 'Achievement was successfully updated.' }
+        format.html { redirect_to achievements_path, notice: 'Achievement was successfully updated.' }
         format.json { render :show, status: :ok, location: @achievement }
       else
         format.html { render :edit }
@@ -97,6 +106,6 @@ class AchievementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def achievement_params
-      params.require(:achievement).permit(:title, :description, :points)
+      params.require(:achievement).permit(:title, :description, :points, :team_id, :approved)
     end
 end

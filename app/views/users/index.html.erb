@@ -2,7 +2,7 @@
   <div class="white-box">
     <div class="row">
       <div class="col-sm-6">
-        <h4 class="box-title">Users</h4>
+        <h4 class="box-title"> <%= current_user.admin? ? "All Users" : current_user.team.name  %> </h4>
       </div>
       <div class="col-sm-6">
         <%= link_to new_user_path, class:"btn btn-success pull-right m-t-10 font-20 round-button-small" do %>
@@ -17,6 +17,9 @@
             <th>Id</th>
             <th>Name</th>
             <th>Email</th>
+            <% if current_user.admin? %>
+              <th>Team</th>
+            <% end %>
             <th>Status</th>
             <th></th>
           </tr>
@@ -32,6 +35,15 @@
                   <%= user.first_name %> <%= user.last_name %>  </td>
                 <% end %>
               <td> <%= user.email %>  </td>
+              <% if current_user.admin? %>
+                <td>
+                  <% if user.team.present? %>
+                    <%= user.team.name %>
+                  <% else %>
+                    -
+                  <% end %>
+                </td>
+              <% end %>
               <td>
                 <% if user.admin?  %>
                 <span class="label label-info">Admin</span>
@@ -41,6 +53,10 @@
                   <span class="label label-success">Accepted</span>
                 <% else %>
                   <span class="label label-warning">Invited</span>
+                <% end %>
+
+                <% if !user.team.present? %>
+                  <span class="label label-warning">No Team</span>
                 <% end %>
               </td>
               <td>
