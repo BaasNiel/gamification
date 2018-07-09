@@ -7339,12 +7339,12 @@ ul.list-icons li i {
 
 @font-face {
     font-family: simple-line-icons;
-    src: url(Simple-Line-Icons.eot);
-    src: url(Simple-Line-Icons.eot?#iefix) format('embedded-opentype'),
-        url(Simple-Line-Icons.ttf) format('truetype'),
-        url(Simple-Line-Icons.woff2) format('woff2'),
-        url(Simple-Line-Icons.woff) format('woff'),
-        url(Simple-Line-Icons.svg?-i3a2kk#simple-line-icons) format('svg');
+    src: font_url("Simple-Line-Icons.eot");
+    src: font_url("Simple-Line-Icons.eot?#iefix") format('embedded-opentype'),
+        font_url("Simple-Line-Icons.ttf") format('truetype'),
+        font_url("Simple-Line-Icons.woff2") format('woff2'),
+        font_url("Simple-Line-Icons.woff") format('woff'),
+        font_url("Simple-Line-Icons.svg?-i3a2kk#simple-line-icons") format('svg');
     font-weight: 400;
     font-style: normal
 }
@@ -8277,11 +8277,11 @@ ul.list-icons li i {
 
 @font-face {
     font-family: themify;
-    src: url(themify.eot);
-    src: url(themify.eot?#iefix) format('embedded-opentype'),
-        url(themify.woff) format('woff'),
-        url(themify.ttf) format('truetype'),
-        url(themify.svg?-fvbane#themify) format('svg');
+    src: font_url("themify.eot");
+    src: font_url("themify.eot?#iefix") format('embedded-opentype'),
+        font_url("themify.woff") format('woff'),
+        font_url("themify.ttf") format('truetype'),
+        font_url("themify.svg?-fvbane#themify") format('svg');
     font-weight: 400;
     font-style: normal
 }
@@ -9715,12 +9715,12 @@ ul.list-icons li i {
 
 @font-face {
     font-family: FontAwesome;
-    src: url(fontawesome-webfont.eot?v=4.5.0);
-    src: url(fontawesome-webfont.eot?#iefix&v=4.5.0) format('embedded-opentype'),
-        url(fontawesome-webfont.woff2?v=4.5.0) format('woff2'),
-        url(fontawesome-webfont.woff?v=4.5.0) format('woff'),
-        url(fontawesome-webfont.ttf?v=4.5.0) format('truetype'),
-        url(fontawesome-webfont.svg?v=4.5.0#fontawesomeregular) format('svg');
+    src: font_url("fontawesome-webfont.eot?v=4.5.0");
+    src: font_url("fontawesome-webfont.eot?#iefix&v=4.5.0") format('embedded-opentype'),
+        font_url("fontawesome-webfont.woff2?v=4.5.0") format('woff2'),
+        font_url("fontawesome-webfont.woff?v=4.5.0") format('woff'),
+        font_url("fontawesome-webfont.ttf?v=4.5.0") format('truetype'),
+        font_url("fontawesome-webfont.svg?v=4.5.0#fontawesomeregular") format('svg');
     font-weight: 400;
     font-style: normal
 }
@@ -9853,35 +9853,35 @@ ul.list-icons li i {
 }
 
 .fa-rotate-90 {
-    filter: progid: DXImageTransform.Microsoft.BasicImage(rotation=1);
+    filter: unquote("progid:DXImageTransform.Microsoft.BasicImage(rotation=1)");
     -webkit-transform: rotate(90deg);
     -ms-transform: rotate(90deg);
     transform: rotate(90deg)
 }
 
 .fa-rotate-180 {
-    filter: progid: DXImageTransform.Microsoft.BasicImage(rotation=2);
+    filter: unquote("progid:DXImageTransform.Microsoft.BasicImage(rotation=2)");
     -webkit-transform: rotate(180deg);
     -ms-transform: rotate(180deg);
     transform: rotate(180deg)
 }
 
 .fa-rotate-270 {
-    filter: progid: DXImageTransform.Microsoft.BasicImage(rotation=3);
+    filter: unquote("progid:DXImageTransform.Microsoft.BasicImage(rotation=3)");
     -webkit-transform: rotate(270deg);
     -ms-transform: rotate(270deg);
     transform: rotate(270deg)
 }
 
 .fa-flip-horizontal {
-    filter: progid: DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1);
+    filter: unquote("progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1)");
     -webkit-transform: scale(-1, 1);
     -ms-transform: scale(-1, 1);
     transform: scale(-1, 1)
 }
 
 .fa-flip-vertical {
-    filter: progid: DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1);
+    filter: unquote("progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)");
     -webkit-transform: scale(1, -1);
     -ms-transform: scale(1, -1);
     transform: scale(1, -1)
