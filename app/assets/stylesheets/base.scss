@@ -4325,7 +4325,7 @@ table.focus-on tbody tr.focused th {
 }
 
 .login-register {
-    background: url(../../plugins/images/login-register.jpg) center center/cover no-repeat!important;
+    background: url(asset_path("login-bg.jpg")) center center/cover no-repeat !important;
     height: 100%;
     position: fixed
 }
@@ -4348,7 +4348,7 @@ table.focus-on tbody tr.focused th {
 }
 
 #recoverform {
-    display: none
+    /*display: none*/
 }
 
 .pricing-box {
