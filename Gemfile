@@ -37,6 +37,7 @@ gem 'jquery-rails'
 gem 'active_link_to'
 gem 'carrierwave', '~> 1.0'
 gem 'momentjs-rails'
+gem "ruby-enum"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
