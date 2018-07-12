@@ -1,0 +1,13 @@
+<% @pomodoros.each do |pomodoro| %>
+  <div>
+    <%= pomodoro.id %>
+  </div>
+
+  <div>
+    <%= pomodoro.start_time %>
+  </div>
+<% end %>
+
+<%= button_to "Start",
+      { controller: "pomodoros", action: "create" },
+        method: :post, class: "btn btn-primary btn-xl" %>
