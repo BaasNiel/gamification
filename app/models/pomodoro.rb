@@ -15,18 +15,18 @@ class Pomodoro < ApplicationRecord
   has_many :pauses, dependent: :destroy
 
   class << self
-    def current_timer
-      timer = Timer.order("id desc").first
-      if timer.nil? || timer.status == Status::COMPLETED
-        Timer.new
+    def current_pomodoro(user)
+      pomodoro = Pomodoro.where(user: user).order("id desc").first
+      if pomodoro.nil? || pomodoro.status == Status::COMPLETED
+        Pomodoro.new
       else
-        timer
+        pomodoro
       end
     end
 
-    def start
-      return false if Timer.current_timer.active?
-      Timer.create(start_time: Time.zone.now)
+    def start(user)
+      return false if Pomodoro.current_pomodoro(user).active?
+      Pomodoro.create(start_time: Time.zone.now, user: user)
     end
   end
 
