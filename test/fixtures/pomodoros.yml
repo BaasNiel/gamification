@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_time: 2018-07-12 13:03:56
+  end_time: 
+  status: 1
+  user: one
+
+two:
+  start_time: 2018-07-12 13:03:56
+  end_time: 
+  status: 1
+  user: two
