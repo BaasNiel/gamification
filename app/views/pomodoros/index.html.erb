@@ -1,13 +1,81 @@
-<% @pomodoros.each do |pomodoro| %>
-  <div>
-    <%= pomodoro.id %>
+<div class="container-fluid">
+  <div class="white-box text-center">
+    <div id="pomodoro-time" class="pomodoro-time">
+      <%= seconds_to_timer_str(@pomodoro.remaining_seconds) %>
+    </div>
+
+    <% if @pomodoro.status == Pomodoro::Status::INITIAL %>
+      <%= button_to({controller: "pomodoros", action: "create"},
+        {method: :post, class: "fcbtn btn btn-success btn-outline btn-1e pomodoro-action"}) do %>
+        Start
+      <% end %>
+    <% else %>
+      <% if @pomodoro.id %>
+        <% if @pomodoro.status == Pomodoro::Status::PAUSED %>
+          <%= button_to({controller: "pomodoros", action: "stop", id: @pomodoro.id},
+              {method: :post, form_class: "pomodoro-action-form", class: "fcbtn btn btn-danger btn-outline btn-1e pomodoro-action"}) do %>
+            Stop
+          <% end %>
+
+          <%= button_to({controller: "pomodoros", action: "resume", id: @pomodoro.id},
+              {method: :post, form_class: "pomodoro-action-form", class: "fcbtn btn btn-primary btn-outline btn-1e pomodoro-action"}) do %>
+            Resume
+          <% end %>
+        <% end %>
+
+        <% if @pomodoro.status == Pomodoro::Status::RUNNING %>
+          <%= button_to({controller: "pomodoros", action: "pause", id: @pomodoro.id},
+              {method: :post, class: "fcbtn btn btn-warning btn-outline btn-1e pomodoro-action"}) do %>
+            Pause
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
   </div>
 
-  <div>
-    <%= pomodoro.start_time %>
+  <div class="white-box">
+    <% if @pomodoros.count > 0 %>
+      <div class="row">
+        <div class="col-sm-6">
+          <h4 class="box-title"> My Pomodoros </h4>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Start</th>
+              <th>End</th>
+              <th>Current Time</th>
+              <th>Pause Count</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @pomodoros.each do |p| %>
+              <tr>
+                <td> <%= p.id %> </td>
+                <td><%= to_display_time(p.start_time) %></td>
+                <td><%= to_display_time(p.end_time) %></td>
+                <td><%= seconds_to_timer_str(p.passed_seconds) %></td>
+                <td><%= p.pauses_count %></td>
+                <td><%= p.status %></td>
+                <td>
+                  <%= button_to 'Destroy', pomodoro_path(p), :method => :delete, :class => 'btn btn-xs btn-danger' %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% else %>
+      <span>No Pomodoros</span>
+    <% end %>
   </div>
-<% end %>
 
-<%= button_to "Start",
-      { controller: "pomodoros", action: "create" },
-        method: :post, class: "btn btn-primary btn-xl" %>
+  <p id="notice"><%= notice %></p>
+
+
+</div>

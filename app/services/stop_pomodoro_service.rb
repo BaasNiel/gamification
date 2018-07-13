@@ -1,3 +1,5 @@
+require 'sidekiq/api'
+
 class StopPomodoroService
   class << self
     def create(pomodoro)

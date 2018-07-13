@@ -15,5 +15,11 @@ Rails.application.routes.draw do
   get "users/:id/assign_achievements", to: "achievements#assign_index", as: :assign_index
   post "users/assign_achievements", to: "achievements#assign_create", as: :assign_create
 
+  post "pomodoros/:id/stop"   => "pomodoros#stop",   as: :pomodoros_stop
+  post "pomodoros/:id/pause"  => "pomodoros#pause",  as: :pomodoros_pause
+  post "pomodoros/:id/resume" => "pomodoros#resume", as: :pomodoros_resume
+
   root "profile#index"
+
+  # mount Sidekiq::Web, at: "/sidekiq"
 end
