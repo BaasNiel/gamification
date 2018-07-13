@@ -18,6 +18,11 @@ class PomodorosController < ApplicationController
 
   def show
     @pomodoro = Pomodoro.find params[:id]
+
+    respond_to do |format|
+      format.json { render json: @pomodoro.to_json(methods: :remaining_seconds) }
+      format.html { redirect_to pomodoros_path }
+    end
   end
 
   def destroy

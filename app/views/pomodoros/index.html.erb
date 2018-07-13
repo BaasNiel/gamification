@@ -79,3 +79,9 @@
 
 
 </div>
+
+<%= javascript_tag do %>
+  window.remainingSeconds = "<%= @pomodoro.remaining_seconds %>";
+  window.isCountingDown   = "<%= @pomodoro.status == Pomodoro::Status::RUNNING %>";
+  window.timerId          = "<%= @pomodoro.id %>";
+<% end %>
