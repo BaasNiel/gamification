@@ -1,5 +1,5 @@
 class Pause < ApplicationRecord
-  belongs_to :pomodoro
+  belongs_to :pomodoro, counter_cache: true
 
   def active?
     end_time.nil?
