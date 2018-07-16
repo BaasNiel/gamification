@@ -49,30 +49,34 @@
 
           <div class="activity-widget" style="padding:25px;">
             <div class="steamline">
-              <% @user_achievements.each do |ua| %>
-                <div class="sl-item">
-                  <div class="sl-left">
-                    <% if ua.achievement.points > 0 %>
-                      <div class="bg-success">
-                        <%= ua.achievement.points %>
-                      </div>
-                    <% else %>
-                      <div class="bg-danger">
-                        <%= ua.achievement.points %>
-                      </div>
-                    <% end %>
+              <% if @user_achievements.count > 0 %>
+                <% @user_achievements.each do |ua| %>
+                  <div class="sl-item">
+                    <div class="sl-left">
+                      <% if ua.achievement.points > 0 %>
+                        <div class="bg-success">
+                          <%= ua.achievement.points %>
+                        </div>
+                      <% else %>
+                        <div class="bg-danger">
+                          <%= ua.achievement.points %>
+                        </div>
+                      <% end %>
+                    </div>
+                    <div class="sl-right">
+                      <div> <%= ua.achievement.description %> </div>
+                      <p class="time-ago">
+                        <% if ua.date_achieved? %>
+                          <%= ua.date_achieved.rfc2822 %>
+                        <% else  %>
+                          <%= ua.created_at.rfc2822 %>
+                        <% end  %>
+                      </p>
+                    </div>
                   </div>
-                  <div class="sl-right">
-                    <div> <%= ua.achievement.description %> </div>
-                    <p class="time-ago">
-                      <% if ua.date_achieved? %>
-                        <%= ua.date_achieved.rfc2822 %>
-                      <% else  %>
-                        <%= ua.created_at.rfc2822 %>
-                      <% end  %>
-                    </p>
-                  </div>
-                </div>
+                <% end %>
+              <% else %>
+                No achievements, yet. Go out there and achieve something!
               <% end %>
             </div>
           </div>
