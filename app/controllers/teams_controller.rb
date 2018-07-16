@@ -26,6 +26,18 @@ class TeamsController < ApplicationController
   def create
     @team = Team.new(team_params)
 
+    # After the team has been created, we want to create a first achievement
+    # for them, namely one for pomodoros. This is just so the pomodoro feature
+    # has something to assign once a pomodoro is completed
+
+    @achievement = Achievement.create(
+      title: "Complete A Pomodoro",
+      description: "You were disciplined for a little while. You should feel proud",
+      points: 5,
+      team: @team,
+      approved: true
+    )
+
     respond_to do |format|
       if @team.save
         format.html { redirect_to @team, notice: 'Team was successfully created.' }
