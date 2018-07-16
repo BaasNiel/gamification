@@ -75,6 +75,7 @@ class AchievementsController < ApplicationController
     @achievements = Achievement.all
   end
 
+  # This gets executed when an achievement is assigned to a user
   def assign_create
     user = User.find params[:user_id]
     achievement = Achievement.find params[:achievement_id]
@@ -82,6 +83,7 @@ class AchievementsController < ApplicationController
     @assigned_achievement = UserAchievement.new
     @assigned_achievement.user = user
     @assigned_achievement.achievement = achievement
+    @assigned_achievement.date_achieved = Time.now
 
     respond_to do |format|
       if @assigned_achievement.save
