@@ -21,7 +21,7 @@
               <th>Team</th>
             <% end %>
             <th>Status</th>
-            <th></th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -60,14 +60,18 @@
                 <% end %>
               </td>
               <td>
-                <%= link_to assign_index_path(user), { data: { toggle: "tooltip", original_title: "Assign Achievement" } } do %>
-                  <i class="fa fa-trophy action assign"></i>
-                <% end %>
-                <%= link_to edit_user_path(user), { data: { toggle: "tooltip", original_title: "Edit" } } do %>
-                  <i class="fa fa-pencil action edit"></i>
-                <% end %>
-                <%= link_to user, method: :delete, data: { confirm: 'Are you sure?', toggle: "tooltip", original_title: "Delete" } do %>
-                  <i class="fa fa-trash action delete"></i>
+                <% if current_user.admin?  %>
+                  <%= link_to assign_index_path(user), { data: { toggle: "tooltip", original_title: "Assign Achievement" } } do %>
+                    <i class="fa fa-trophy action assign"></i>
+                  <% end %>
+                  <%= link_to edit_user_path(user), { data: { toggle: "tooltip", original_title: "Edit" } } do %>
+                    <i class="fa fa-pencil action edit"></i>
+                  <% end %>
+                  <%= link_to user, method: :delete, data: { confirm: 'Are you sure?', toggle: "tooltip", original_title: "Delete" } do %>
+                    <i class="fa fa-trash action delete"></i>
+                  <% end %>
+                <% else %>
+                  <span>You are not important enough</span>
                 <% end %>
               </td>
             </tr>
@@ -76,6 +80,4 @@
       </table>
     </div>
   </div>
-
-  <p id="notice"><%= notice %></p>
 </div>
