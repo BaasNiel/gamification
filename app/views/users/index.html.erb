@@ -31,9 +31,7 @@
                 <%= user.id %>
               </td>
               <td>
-                <%= link_to user, class:"text-link" do %>
-                  <%= user.first_name %> <%= user.last_name %>  </td>
-                <% end %>
+                <span><%= user.first_name %> <%= user.last_name %>  </td></span>
               <td> <%= user.email %>  </td>
               <% if current_user.admin? %>
                 <td>
