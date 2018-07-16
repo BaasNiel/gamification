@@ -1,18 +1,6 @@
 #pomodoro-time {
-  background-image: url('http://www.florencebolsee.be/tomato.gif');
-  background-size: cover;
-  width: 175px;
-  height: 175px;
-  image-rendering: pixelated;
-  image-rendering: -moz-crisp-edges;
-  image-rendering: crisp-edges;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  padding-bottom: 30px;
-  color: #fff;
-  margin: 0 auto 20px;
-  font-size: 30px;
+  font-size: 70px;
+  color: #666;
 }
 
 .pomodoro-action {
