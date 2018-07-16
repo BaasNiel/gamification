@@ -62,6 +62,24 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "gamification_#{Rails.env}"
   config.action_mailer.perform_caching = false
 
+  #Added per active admin install instructions
+  config.action_mailer.default_url_options = { :host => 'gamify.greengain.co.za' }
+
+
+  #These settings are for the sending out email for active admin and consequently the   devise mailer
+  ActionMailer::Base.delivery_method = :smtp
+  ActionMailer::Base.perform_deliveries = true
+  ActionMailer::Base.raise_delivery_errors = true
+  ActionMailer::Base.smtp_settings =
+  {
+
+    :address            => 'email-smtp.eu-west-1.amazonaws.com',
+    :port               => 587,
+    :authentication     => :plain,
+    :user_name          => ENV['AWS_SES_USERNAME'],
+    :password           => ENV["AWS_SES_PASSWORD"]
+  }
+
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
