@@ -2,13 +2,12 @@
 
 <h1>Teams</h1>
 
-<table>
+<table border=1>
   <thead>
     <tr>
       <th>Name</th>
       <th>Avatar</th>
       <th>Start of week</th>
-      <th>User</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,7 +18,6 @@
         <td><%= team.name %></td>
         <td><%= team.avatar %></td>
         <td><%= team.start_of_week %></td>
-        <td><%= team.user %></td>
         <td><%= link_to 'Show', team %></td>
         <td><%= link_to 'Edit', edit_team_path(team) %></td>
         <td><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
