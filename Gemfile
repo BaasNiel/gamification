@@ -39,7 +39,6 @@ gem 'carrierwave', '~> 1.0'
 gem 'momentjs-rails'
 gem "ruby-enum"
 gem "sidekiq"
-gem 'toastr-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
