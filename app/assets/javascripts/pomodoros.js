@@ -1,4 +1,8 @@
 (function() {
+  if (!$('body').hasClass("rails_pomodoros")) {
+    return false;
+  }
+
   var addZeroPadding, convertSecondsToTimer, currentTime, hasFocus, isFocusGained, isResumed, refreshScreen, synchronizeTimer, updateTimerDisplay;
 
   window.countdownTimerId = null;
