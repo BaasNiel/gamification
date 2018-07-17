@@ -30,15 +30,20 @@ class TeamsController < ApplicationController
     # for them, namely one for pomodoros. This is just so the pomodoro feature
     # has something to assign once a pomodoro is completed
 
-    @achievement = Achievement.create(
+    @achievement = Achievement.new(
       title: "Complete A Pomodoro",
       description: "You were disciplined for a little while. You should feel proud",
       points: 5,
-      team: @team,
       approved: true
     )
 
+    @team.save
+    @achievement.team = @team
+    @achievement.save
+    @team.pomodoro_achievement = @achievement
+
     respond_to do |format|
+
       if @team.save
         format.html { redirect_to @team, notice: 'Team was successfully created.' }
         format.json { render :show, status: :created, location: @team }
@@ -66,10 +71,13 @@ class TeamsController < ApplicationController
   # DELETE /teams/1
   # DELETE /teams/1.json
   def destroy
-    @team.destroy
-    respond_to do |format|
-      format.html { redirect_to teams_url, notice: 'Team was successfully destroyed.' }
-      format.json { head :no_content }
+    @team.pomodoro_achievement_id = nil
+    if @team.save
+      @team.destroy
+      respond_to do |format|
+        format.html { redirect_to teams_url, notice: 'Team was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 
