@@ -7,6 +7,7 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
   has_many :user_achievements
   has_many :achievements, :through => :user_achievements
+  has_many :pomodoros, dependent: :destroy
 
   belongs_to :team
 
