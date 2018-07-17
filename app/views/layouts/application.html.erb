@@ -8,12 +8,26 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="rails_<%= controller_name %> rails_<%= action_name %>">
     <div id="wrapper">
       <%= render 'shared/navbar' %>
       <%= render 'shared/sidebar' %>
 
       <div class="page-wrapper">
+        <% if flash[:notice] %>
+          <div class="myadmin-alert myadmin-alert-icon myadmin-alert-click alert-info myadmin-alert-bottom alertbottom">
+            <i class="icon-info fa-fw"></i> <%= flash[:notice] %>
+            <a href="#" class="closed">&times;</a>
+          </div>
+        <% end %>
+
+        <% if flash[:alert] %>
+          <div class="myadmin-alert myadmin-alert-icon myadmin-alert-click alert-danger myadmin-alert-bottom alertbottom">
+            <i class="icon-ban fa-fw"></i> <%= flash[:alert] %>
+            <a href="#" class="closed">&times;</a>
+          </div>
+        <% end %>
+
         <%= yield %>
       </div>
 

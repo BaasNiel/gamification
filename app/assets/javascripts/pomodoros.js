@@ -10,6 +10,10 @@
   window.titlePrefix = document.title;
 
   $(function() {
+    if (!$('body').hasClass("rails_pomodoros")) {
+      return false;
+    }
+
     var countdownTimerId;
     updateTimerDisplay(window.remainingSeconds);
     if (isCountingDown === "true") {

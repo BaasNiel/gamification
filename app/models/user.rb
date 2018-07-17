@@ -25,9 +25,19 @@ class User < ApplicationRecord
   end
 
   def points_this_week
-    team_start_of_week = self.team.start_of_week.to_sym
-    start_of_week = Time.now.beginning_of_week(team_start_of_week)
+    team = self.team
+    start_of_week = Time.now.beginning_of_week(team.start_of_week_symbol)
     user_achievements = self.user_achievements.where(date_achieved: start_of_week..Time.now)
+    achievements_earned = user_achievements.map(&:achievement)
+    achievements_earned.map(&:points).sum
+  end
+
+  def points_last_week
+    team = self.team
+    start_of_week = Time.now.beginning_of_week(team.start_of_week_symbol)
+    start_of_last_week = start_of_week - 7.days
+    end_of_last_week = start_of_week - 1.second
+    user_achievements = self.user_achievements.where(date_achieved: start_of_last_week..end_of_last_week)
     achievements_earned = user_achievements.map(&:achievement)
     achievements_earned.map(&:points).sum
   end

@@ -227,3 +227,12 @@ $('.visited li a').on('click', function(e) {
   }
   e.preventDefault();
 });
+
+/* ========== Close notifications =========== */
+$(function() {
+  $(".myadmin-alert .closed").on("click", function(event) {
+    event.preventDefault();
+    $(this).parents(".myadmin-alert").fadeToggle(350);
+    return false;
+  });
+});

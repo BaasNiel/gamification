@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180712135030) do
+ActiveRecord::Schema.define(version: 20180717075829) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,7 +53,9 @@ ActiveRecord::Schema.define(version: 20180712135030) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "admin_id"
+    t.bigint "pomodoro_achievement_id"
     t.index ["admin_id"], name: "index_teams_on_admin_id"
+    t.index ["pomodoro_achievement_id"], name: "index_teams_on_pomodoro_achievement_id"
   end
 
   create_table "user_achievements", force: :cascade do |t|
@@ -104,6 +106,7 @@ ActiveRecord::Schema.define(version: 20180712135030) do
   add_foreign_key "achievements", "teams"
   add_foreign_key "pauses", "pomodoros"
   add_foreign_key "pomodoros", "users"
+  add_foreign_key "teams", "achievements", column: "pomodoro_achievement_id"
   add_foreign_key "teams", "users", column: "admin_id"
   add_foreign_key "users", "teams"
 end

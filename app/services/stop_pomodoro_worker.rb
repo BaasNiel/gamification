@@ -8,7 +8,14 @@ class StopPomodoroWorker
       fail "Pomodoro(#{pomodoro_id}) still has #{pomodoro.remaining_seconds} seconds."
     else
       pomodoro.stop!
-      # Here we'll assign an achievement or something, most likely
+
+      user = pomodoro.user
+      team = user.team
+      achievement = team.pomodoro_achievement
+
+      if achievement
+        UserAchievement.create(user: user, achievement: achievement)
+      end
     end
   end
 end

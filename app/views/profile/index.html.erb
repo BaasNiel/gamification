@@ -17,7 +17,7 @@
           <div class="media-body">
             <h3 class="info-count"> <%= @user.points_this_week %> <span class="pull-right"><i class="fa fa-star"></i></span></h3>
             <p class="info-text font-12">Points this week</p>
-            <p class="info-ot font-15">Last week<span class="label label-rounded">180</span></p>
+            <p class="info-ot font-15">Last week<span class="label label-rounded"><%= @user.points_last_week %></span></p>
           </div>
         </div>
       </div>
@@ -43,36 +43,40 @@
             <div class="task-image-overlay"></div>
             <div class="task-detail">
               <h2 class="font-light text-white m-b-0" id="today-date"> <%= Time.now.rfc2822 %> </h2>
-              <h4 class="font-normal text-white m-t-5">Achievements Earned This Week</h4>
+              <h4 class="font-normal text-white m-t-5">Achievements Earned This Week (<%= @week_string %>)</h4>
             </div>
           </div>
 
           <div class="activity-widget" style="padding:25px;">
             <div class="steamline">
-              <% @user_achievements.each do |ua| %>
-                <div class="sl-item">
-                  <div class="sl-left">
-                    <% if ua.achievement.points > 0 %>
-                      <div class="bg-success">
-                        <%= ua.achievement.points %>
-                      </div>
-                    <% else %>
-                      <div class="bg-danger">
-                        <%= ua.achievement.points %>
-                      </div>
-                    <% end %>
+              <% if @user_achievements.count > 0 %>
+                <% @user_achievements.each do |ua| %>
+                  <div class="sl-item">
+                    <div class="sl-left">
+                      <% if ua.achievement.points > 0 %>
+                        <div class="bg-success">
+                          <%= ua.achievement.points %>
+                        </div>
+                      <% else %>
+                        <div class="bg-danger">
+                          <%= ua.achievement.points %>
+                        </div>
+                      <% end %>
+                    </div>
+                    <div class="sl-right">
+                      <div> <%= ua.achievement.description %> </div>
+                      <p class="time-ago">
+                        <% if ua.date_achieved? %>
+                          <%= ua.date_achieved.rfc2822 %>
+                        <% else  %>
+                          <%= ua.created_at.rfc2822 %>
+                        <% end  %>
+                      </p>
+                    </div>
                   </div>
-                  <div class="sl-right">
-                    <div> <%= ua.achievement.description %> </div>
-                    <p class="time-ago">
-                      <% if ua.date_achieved? %>
-                        <%= ua.date_achieved.rfc2822 %>
-                      <% else  %>
-                        <%= ua.created_at.rfc2822 %>
-                      <% end  %>
-                    </p>
-                  </div>
-                </div>
+                <% end %>
+              <% else %>
+                No achievements, yet. Go out there and achieve something!
               <% end %>
             </div>
           </div>
