@@ -39,6 +39,7 @@ gem 'carrierwave', '~> 1.0'
 gem 'momentjs-rails'
 gem "ruby-enum"
 gem "sidekiq"
+gem 'redis-namespace'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
