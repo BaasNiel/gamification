@@ -1,8 +1,10 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   resources :teams
   devise_for :users, controllers: {
-  invitations: "invitations"
-}
+    invitations: "invitations"
+  }
 
   resources :achievements
   resources :users
@@ -21,5 +23,5 @@ Rails.application.routes.draw do
 
   root "profile#index"
 
-  # mount Sidekiq::Web, at: "/sidekiq"
+  mount Sidekiq::Web => '/sidekiq'
 end
