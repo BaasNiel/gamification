@@ -23,6 +23,9 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    if current_user.id.to_i != params[:id].to_i && !current_user.admin?
+      redirect_to root_url, :alert => "You can't access that page"
+    end
   end
 
   # POST /users
