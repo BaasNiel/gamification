@@ -41,4 +41,20 @@ class User < ApplicationRecord
     achievements_earned = user_achievements.map(&:achievement)
     achievements_earned.map(&:points).sum
   end
+
+  def pomodoros_this_week
+    team = self.team
+    start_of_week = Time.now.beginning_of_week(team.start_of_week_symbol)
+    pomodoros_completed = self.pomodoros.where(end_time: start_of_week..Time.now)
+    pomodoros_completed.count
+  end
+
+  def pomodoros_last_week
+    team = self.team
+    start_of_week = Time.now.beginning_of_week(team.start_of_week_symbol)
+    start_of_last_week = start_of_week - 7.days
+    end_of_last_week = start_of_week - 1.second
+    pomodoros_completed = self.pomodoros.where(end_time: start_of_last_week..end_of_last_week)
+    pomodoros_completed.count
+  end
 end

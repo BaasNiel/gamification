@@ -26,9 +26,9 @@
       <div class="white-box">
         <div class="media bg-danger">
           <div class="media-body">
-            <h3 class="info-count">12 <span class="pull-right"><i class="fa fa-clock-o"></i></span></h3>
+            <h3 class="info-count"><%= @user.pomodoros_this_week %> <span class="pull-right"><i class="fa fa-clock-o"></i></span></h3>
             <p class="info-text font-12">Pomodoros This week</p>
-            <p class="info-ot font-15">Last Week<span class="label label-rounded">16</span></p>
+            <p class="info-ot font-15">Last Week<span class="label label-rounded"><%= @user.pomodoros_last_week %></span></p>
           </div>
         </div>
       </div>
