@@ -41,7 +41,7 @@
         </div>
       </div>
       <div class="table-responsive">
-        <table class="table">
+        <table class="tablesaw table-striped table-bordered table">
           <thead>
             <tr>
               <th>Id</th>
@@ -50,7 +50,9 @@
               <th>Time Since Start</th>
               <th>Pause Count</th>
               <th>Status</th>
-              <th></th>
+              <% if current_user.admin? %>
+                <th></th>
+              <% end %>
             </tr>
           </thead>
           <tbody>
@@ -62,9 +64,11 @@
                 <td><%= seconds_to_timer_str(p.passed_seconds) %></td>
                 <td><%= p.pauses_count %></td>
                 <td><%= p.status %></td>
-                <td>
-                  <%= button_to 'Destroy', pomodoro_path(p), :method => :delete, :class => 'btn btn-xs btn-danger' %>
-                </td>
+                <% if current_user.admin? %>
+                  <td>
+                    <%= button_to 'Destroy', pomodoro_path(p), :method => :delete, :class => 'btn btn-xs btn-danger' %>
+                  </td>
+                <% end %>
               </tr>
             <% end %>
           </tbody>

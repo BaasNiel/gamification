@@ -27,14 +27,20 @@
         </li>
         <li>
           <%= active_link_to(achievements_path, class:"waves-effect") do %>
+            <i class="icon-star fa-fw"></i>
+            <span> Available Achievements </span>
+          <% end %>
+        </li>
+        <li>
+          <%= active_link_to(user_achievements_path, class:"waves-effect") do %>
             <i class="icon-trophy fa-fw"></i>
-            <span> Achievements </span>
+            <span> Achievements Earned </span>
           <% end %>
         </li>
         <li>
           <%= active_link_to(users_path, class:"waves-effect") do %>
             <i class="icon-people fa-fw"></i>
-            <span> Users </span>
+            <span> My Team </span>
           <% end %>
         </li>
         <li>
