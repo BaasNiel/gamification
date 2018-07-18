@@ -1,5 +1,33 @@
-<%= @user.first_name %> <%= @user.last_name %>
-<% @earned_achievements.each do |a| %>
-  <div> <%= a.achievement.title %> </div>
-  <div> Earned on: <%= a.date_achieved %> </div>
-<% end %>
+<div class="container-fluid">
+  <div class="white-box">
+    <div class="row">
+      <div class="col-sm-6">
+        <h4 class="box-title" id="my-achievements-title"> My Achievements </h4>
+      </div>
+    </div>
+    <table class="tablesaw table-striped table-bordered table">
+      <thead>
+        <tr>
+          <th>Points</th>
+          <th>Achievement</th>
+          <th>Date Achieved</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @earned_achievements.each do |a| %>
+          <tr>
+            <td class="text-center">
+              <% if a.achievement.points > 0  %>
+                <span class="label label-success"> <%= a.achievement.points %> </span>
+              <% else %>
+                <span class="label label-danger"> <%= a.achievement.points %> </span>
+              <% end %>
+             </td>
+            <td> <%= a.achievement.title %> </td>
+            <td> <%= a.date_achieved_formatted %>  </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

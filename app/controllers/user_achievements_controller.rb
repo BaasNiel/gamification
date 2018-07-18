@@ -10,7 +10,7 @@ class UserAchievementsController < ApplicationController
       user = current_user
     end
 
-    @earned_achievements = UserAchievement.where(user: user)
+    @earned_achievements = UserAchievement.where(user: user).order("date_achieved DESC, created_at DESC")
     @user = user
   end
 end
