@@ -2,10 +2,13 @@
   <div class="white-box">
     <div class="row">
       <div class="col-sm-6">
-        <h4 class="box-title" id="my-achievements-title"> My Achievements </h4>
+        <h4 class="box-title"> My Achievements </h4>
+        <% if show_name_in_title %>
+          <h5 class="text-muted"><%= @user.first_name %> <%= @user.last_name %></h5>
+        <% end %>
       </div>
     </div>
-    <table class="tablesaw table-striped table-bordered table">
+    <table class="tablesaw table-striped table-bordered table" id="my-achievements-table">
       <thead>
         <tr>
           <th>Points</th>

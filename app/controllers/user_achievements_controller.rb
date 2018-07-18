@@ -13,4 +13,10 @@ class UserAchievementsController < ApplicationController
     @earned_achievements = UserAchievement.where(user: user).order("date_achieved DESC, created_at DESC")
     @user = user
   end
+
+  def show_name_in_title
+    params[:id].present? && params[:id].present? != current_user.id
+  end
+
+  helper_method :show_name_in_title
 end
