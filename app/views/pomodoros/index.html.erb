@@ -84,4 +84,5 @@
   window.remainingSeconds = "<%= @pomodoro.remaining_seconds %>";
   window.isCountingDown   = "<%= @pomodoro.status == Pomodoro::Status::RUNNING %>";
   window.timerId          = "<%= @pomodoro.id %>";
+  window.audioPath        = "<%= audio_path('time-to-stop.mp3') %>";
 <% end %>
