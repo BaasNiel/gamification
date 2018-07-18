@@ -21,8 +21,19 @@
         if (window.remainingSeconds > 0) {
           window.remainingSeconds -= 1;
         } else {
+          isCountingDown = false;
           clearInterval(countdownTimerId);
-          refreshScreen();
+
+          var audio = new Audio(window.audioPath);
+
+          $(audio).off('ended');
+          $(audio).on('ended', function() {
+            refreshScreen();
+          })
+
+          audio.play().catch((error) => {
+            console.error(error);
+          });
         }
         updateTimerDisplay(window.remainingSeconds);
         if (isFocusGained() === true || isResumed() === true) {
@@ -58,6 +69,7 @@
       success: function(data, status, xhr) {
         window.remainingSeconds = parseInt(data.remaining_seconds);
         if (window.remainingSeconds <= 0) {
+          window.isCountingDown = false;
           return refreshScreen();
         }
       }
