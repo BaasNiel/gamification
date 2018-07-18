@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   post "pomodoros/:id/pause"  => "pomodoros#pause",  as: :pomodoros_pause
   post "pomodoros/:id/resume" => "pomodoros#resume", as: :pomodoros_resume
 
+  get "user_achievements", to: "user_achievements#index"
+  get "user_achievements/:id", to: "user_achievements#index"
+
   root "profile#index"
 
   mount Sidekiq::Web => '/sidekiq'
