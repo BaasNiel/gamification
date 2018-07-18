@@ -1,9 +1,9 @@
 class UserAchievementsController < ApplicationController
   def index
     if params[:id].present?
-      user = User.find params[:id]
+      user = User.find_by(id: params[:id])
 
-      if current_user.team != user.team && !current_user.admin?
+      if !user || (current_user.team != user.team && !current_user.admin?)
         redirect_to root_url, :alert => "You can't access that page"
       end
     else
@@ -11,5 +11,6 @@ class UserAchievementsController < ApplicationController
     end
 
     @earned_achievements = UserAchievement.where(user: user)
+    @user = user
   end
 end
