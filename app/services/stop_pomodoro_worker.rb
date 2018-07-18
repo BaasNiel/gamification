@@ -14,7 +14,7 @@ class StopPomodoroWorker
       achievement = team.pomodoro_achievement
 
       if achievement
-        UserAchievement.create(user: user, achievement: achievement)
+        UserAchievement.create(user: user, achievement: achievement, date_achieved: Time.now)
       end
     end
   end
