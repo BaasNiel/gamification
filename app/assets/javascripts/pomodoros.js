@@ -10,6 +10,11 @@
   window.titlePrefix = document.title;
 
   $(function() {
+    /**
+     * This is here because I'm a bad coder. The file is included on every
+     * page, so basically I am just checking if we're on the pomodoro page. If
+     * not, we just return out of the function.
+     */
     if (!$('body').hasClass("rails_pomodoros")) {
       return false;
     }
