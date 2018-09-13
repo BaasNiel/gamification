@@ -1,80 +1,65 @@
 (function() {
-  var addZeroPadding, convertSecondsToTimer, currentTime, hasFocus, isFocusGained, isResumed, refreshScreen, synchronizeTimer, updateTimerDisplay;
-
-  window.countdownTimerId = null;
-
-  window.lastFocus = true;
-
-  window.lastUpdated = null;
+  var addZeroPadding, convertSecondsToTimer, updateTimerDisplay;
 
   window.titlePrefix = document.title;
 
+  var remainingMs = 0;
+  var notificationSound = new Audio();
+
   $(function() {
+    /**
+    * This is here because I'm a bad coder. The file is included on every
+    * page, so basically I am just checking if we're on the pomodoro page. If
+    * not, we just return out of the function.
+    */
     if (!$('body').hasClass("rails_pomodoros")) {
       return false;
     }
 
-    var countdownTimerId;
-    updateTimerDisplay(window.remainingSeconds);
-    if (isCountingDown === "true") {
-      return countdownTimerId = setInterval(function() {
-        if (window.remainingSeconds > 0) {
-          window.remainingSeconds -= 1;
-        } else {
-          isCountingDown = false;
-          clearInterval(countdownTimerId);
-
-          var audio = new Audio(window.audioPath);
-
-          $(audio).off('ended');
-          $(audio).on('ended', function() {
-            refreshScreen();
-          })
-
-          audio.play().catch((error) => {
-            console.error(error);
-          });
-        }
-        updateTimerDisplay(window.remainingSeconds);
-        if (isFocusGained() === true || isResumed() === true) {
-          synchronizeTimer();
-        }
-        window.lastFocus = hasFocus();
-        return window.lastUpdated = currentTime();
-      }, 1000);
+    if (Notification.permission === 'default') {
+      /**
+      * Request notification permission if it hasn't been explicitly granted or
+      * denied.
+      */
+      Notification.requestPermission();
     }
+
+    notificationSound.src = window.audioPath;
   });
 
-  isFocusGained = function() {
-    return hasFocus() === true && window.lastFocus === false;
-  };
+  window.startCountdown = function(remainingSeconds) {
+    remainingMs = remainingSeconds * 1000;
+    tick(Date.now(), 0);
+  }
 
-  isResumed = function() {
-    return currentTime() - window.lastUpdated > 5000;
-  };
+  tick = function(startTimestamp, elapsedMs) {
+    updateTimerDisplay((remainingMs - elapsedMs)/1000);
 
-  currentTime = function() {
-    return new Date().getTime();
-  };
+    if (elapsedMs >= remainingMs) {
+      stopCountdown();
+      return;
+    }
 
-  hasFocus = function() {
-    return window.document.hasFocus();
-  };
+    var inaccuracy = (Date.now() - startTimestamp) - elapsedMs;
+    var nextTickSize = 1000 - inaccuracy;
 
-  synchronizeTimer = function() {
-    return $.ajax({
-      async: true,
-      type: "GET",
-      url: "/pomodoros/" + timerId,
-      success: function(data, status, xhr) {
-        window.remainingSeconds = parseInt(data.remaining_seconds);
-        if (window.remainingSeconds <= 0) {
-          window.isCountingDown = false;
-          return refreshScreen();
-        }
-      }
-    });
-  };
+    setTimeout(tick,
+      nextTickSize,
+      startTimestamp,
+      elapsedMs + 1000)
+  }
+
+  function stopCountdown () {
+    if (Notification.permission === 'granted') {
+      new Notification("It's time to stop!")
+    }
+
+    $(notificationSound).on('ended', function() {
+      refreshScreen();
+    })
+
+    notificationSound.play();
+  }
 
   refreshScreen = function() {
     return location.reload();
