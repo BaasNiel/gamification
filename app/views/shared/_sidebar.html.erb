@@ -49,6 +49,18 @@
             <span> Pomodoros </span>
           <% end %>
         </li>
+
+
+        <% if current_user.admin? %>
+          <li class="sidebar__separator"></li>
+
+          <li>
+            <%= active_link_to(users_path, class:"waves-effect") do %>
+              <i class="icon-shield fa-fw"></i>
+              <span> User Management </span>
+            <% end %>
+          </li>
+        <% end %>
       </ul>
     </nav>
   </div>
