@@ -57,4 +57,17 @@ class User < ApplicationRecord
     pomodoros_completed = self.pomodoros.where(end_time: start_of_last_week..end_of_last_week)
     pomodoros_completed.count
   end
+
+  def current_pomodoro
+    if pomodoro_in_progress?
+      self.pomodoros.last
+    else
+      nil
+    end
+  end
+
+  def pomodoro_in_progress?
+    @pomodoro = self.pomodoros.last
+    return @pomodoro.status == Pomodoro::Status::RUNNING || @pomodoro.status == Pomodoro::Status::PAUSED
+  end
 end
