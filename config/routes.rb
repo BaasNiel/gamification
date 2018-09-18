@@ -24,6 +24,9 @@ Rails.application.routes.draw do
   get "user_achievements", to: "user_achievements#index"
   get "user_achievements/:id", to: "user_achievements#index"
 
+  get "team/index"
+  get "team", to: "team#index"
+
   root "profile#index"
 
   mount Sidekiq::Web => '/sidekiq'
