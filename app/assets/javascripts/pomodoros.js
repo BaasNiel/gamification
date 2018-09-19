@@ -1,3 +1,9 @@
+/**
+ * This file uses a lot of logic from team.js. It might be a good
+ * idea to find a way to reuse the logic between files. If you change something
+ * here, you most likely would need to change it in team.js too
+**/
+
 (function() {
   var addZeroPadding, convertSecondsToTimer, updateTimerDisplay;
 
