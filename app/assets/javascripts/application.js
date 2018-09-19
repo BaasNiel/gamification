@@ -21,6 +21,7 @@
 //= require achievements
 //= require profile
 //= require pomodoros
+//= require team
 //
 //= require chartist.min
 //= require chartist-plugin-tooltip

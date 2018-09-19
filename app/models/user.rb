@@ -11,6 +11,10 @@ class User < ApplicationRecord
 
   belongs_to :team
 
+  def full_name
+    self.first_name + " " + self.last_name
+  end
+
   def achievements_earned
     self.user_achievements.map(&:achievement)
   end
@@ -56,5 +60,27 @@ class User < ApplicationRecord
     end_of_last_week = start_of_week - 1.second
     pomodoros_completed = self.pomodoros.where(end_time: start_of_last_week..end_of_last_week)
     pomodoros_completed.count
+  end
+
+  def pomodoros_today
+    pomodoros_completed = self.pomodoros.where(end_time: DateTime.now.beginning_of_day..DateTime.now.end_of_day)
+    pomodoros_completed.count
+  end
+
+  def current_pomodoro
+    if pomodoro_in_progress?
+      self.pomodoros.last
+    else
+      nil
+    end
+  end
+
+  def pomodoro_in_progress?
+    @pomodoro = self.pomodoros.last
+    if @pomodoro
+      @pomodoro.status == Pomodoro::Status::RUNNING || @pomodoro.status == Pomodoro::Status::PAUSED
+    else
+      false
+    end
   end
 end

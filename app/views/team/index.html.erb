@@ -1,0 +1,58 @@
+<!-- JS for this file is in team.js -->
+<div class="container-fluid">
+  <div class="row">
+    <% @users.each do |user| %>
+      <% if user.pomodoro_in_progress? %>
+        <div class="col-lg-4 col-sm-6 team__card">
+          <div class="panel panel-danger">
+            <div class="panel-heading">
+              <span class="team__user-full-name"><%= user.full_name %></span>
+              <span class="pull-right">Not Available</span>
+            </div>
+            <div class="panel-wrapper" >
+              <div class="panel-body">
+                <div class="row">
+                  <h4 class="text-center">
+                    <span class="team__remaining-seconds"><%= user.current_pomodoro.remaining_seconds %></span>
+                    remaining
+                  </h4>
+                </div>
+                <div class="row text-center">
+                  <a class="btn btn-danger m-t-10" style="color:white;">Request a chat</a>
+                </div>
+              </div>
+              <div class="panel-footer">
+                <%= user.first_name %> has completed <%= user.pomodoros_today %>
+                <%= user.pomodoros_today == 1 ? "Pomodoro" : "Pomodoros" %> today
+              </div>
+            </div>
+          </div>
+        </div>
+      <% else %>
+        <div class="col-lg-4 col-sm-6 team__card">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <span class="team__user-full-name"><%= user.full_name %></span>
+              <span class="pull-right">Available</span>
+            </div>
+            <div class="panel-wrapper" >
+              <div class="panel-body">
+                <div class="row">
+                  <h4 class="text-center">No Pomodoro In Progress</h4>
+                </div>
+                <div class="row text-center">
+                  <a class="btn btn-success m-t-10" style="color:white;">Request a chat</a>
+                </div>
+              </div>
+              <div class="panel-footer">
+                <%= user.first_name %> has completed <%= user.pomodoros_today %>
+                <%= user.pomodoros_today == 1 ? "Pomodoro" : "Pomodoros" %> today
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+</div>
