@@ -1,6 +1,8 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  mount ActionCable.server => '/cable'
+
   resources :teams
   devise_for :users, controllers: {
     invitations: "invitations"

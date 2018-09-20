@@ -23,6 +23,8 @@
 //= require pomodoros
 //= require team
 //
+//= require_tree ./channels
+//
 //= require chartist.min
 //= require chartist-plugin-tooltip
 //= require jquery.sparkline.min

@@ -47,6 +47,7 @@ class Pomodoro < ApplicationRecord
   def pause
     return false unless status == Status::RUNNING
     pauses.create!(start_time: Time.zone.now)
+    ActionCable.server.broadcast 'team', message: "paused"
   end
 
   def resume
