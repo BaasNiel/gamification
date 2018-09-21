@@ -13,7 +13,7 @@
               <div class="panel-body">
                 <div class="row">
                   <h4 class="text-center">
-                    <span class="team__remaining-seconds"><%= user.current_pomodoro.remaining_seconds %></span>
+                    <span class="team__remaining-seconds <%= user.current_pomodoro.status %>"><%= user.current_pomodoro.remaining_seconds %></span>
                     remaining
                   </h4>
                 </div>

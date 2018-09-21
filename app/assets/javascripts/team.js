@@ -14,6 +14,12 @@
     $('.team__remaining-seconds').each(function() {
       var remainingSeconds = parseInt($(this).text());
       var remainingMs = remainingSeconds * 1000;
+
+      if ($(this).hasClass('PAUSED')) {
+        updateTimerDisplay(this, remainingMs/1000);
+        return true;
+      }
+
       tick(Date.now(), 0, this, remainingMs);
     });
   });
