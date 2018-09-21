@@ -13,6 +13,7 @@
 //= require jquery
 //= require rails-ujs
 //= require bootstrap
+//= require cable
 //= require jquery.slimscroll
 //= require waves
 //= require sidebarmenu
@@ -22,8 +23,6 @@
 //= require profile
 //= require pomodoros
 //= require team
-//
-//= require_tree ./channels
 //
 //= require chartist.min
 //= require chartist-plugin-tooltip
