@@ -13,6 +13,7 @@
 //= require jquery
 //= require rails-ujs
 //= require bootstrap
+//= require cable
 //= require jquery.slimscroll
 //= require waves
 //= require sidebarmenu

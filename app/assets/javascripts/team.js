@@ -4,10 +4,22 @@
  * here, you most likely would need to change it in pomodoros.js too
 **/
 (function() {
+  App.messages = App.cable.subscriptions.create('TeamChannel', {
+    received: function(data) {
+      return location.reload();
+    }
+  });
+
   $(function() {
     $('.team__remaining-seconds').each(function() {
       var remainingSeconds = parseInt($(this).text());
       var remainingMs = remainingSeconds * 1000;
+
+      if ($(this).hasClass('PAUSED')) {
+        updateTimerDisplay(this, remainingMs/1000);
+        return true;
+      }
+
       tick(Date.now(), 0, this, remainingMs);
     });
   });

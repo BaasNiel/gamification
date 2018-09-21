@@ -27,6 +27,7 @@ class Pomodoro < ApplicationRecord
     def start(user)
       return false if Pomodoro.current_pomodoro(user).active?
       Pomodoro.create(start_time: Time.zone.now, user: user)
+      ActionCable.server.broadcast 'team_channel', message: "started"
     end
   end
 
@@ -41,17 +42,20 @@ class Pomodoro < ApplicationRecord
 
   def stop!
     update!(end_time: Time.zone.now)
+    ActionCable.server.broadcast 'team_channel', message: "stopped"
     complete_pauses
   end
 
   def pause
     return false unless status == Status::RUNNING
     pauses.create!(start_time: Time.zone.now)
+    ActionCable.server.broadcast 'team_channel', message: "paused"
   end
 
   def resume
     return false unless status == Status::PAUSED
     complete_pauses
+    ActionCable.server.broadcast 'team_channel', message: "resumed"
   end
 
   def status

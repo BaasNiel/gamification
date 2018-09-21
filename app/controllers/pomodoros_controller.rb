@@ -52,7 +52,7 @@ class PomodorosController < ApplicationController
       StopPomodoroService.send(service_operation, @pomodoro)
       redirect_to pomodoros_path
     else
-      redirect_to pomodoros_path, flash: { error: ERROR_MESSAGE }
+      redirect_to pomodoros_path, flash: { error: "Idk" }
     end
   end
 end

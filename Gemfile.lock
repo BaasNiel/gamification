@@ -260,6 +260,7 @@ DEPENDENCIES
   pry-byebug
   puma (~> 3.7)
   rails (~> 5.1.6)
+  redis
   redis-namespace
   rubocop (~> 0.49.0)
   ruby-enum
