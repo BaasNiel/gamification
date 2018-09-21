@@ -26,8 +26,12 @@ class Pomodoro < ApplicationRecord
 
     def start(user)
       return false if Pomodoro.current_pomodoro(user).active?
-      Pomodoro.create(start_time: Time.zone.now, user: user)
-      ActionCable.server.broadcast 'team_channel', message: "started"
+      pomodoro = Pomodoro.create(start_time: Time.zone.now, user: user)
+
+      if pomodoro
+        ActionCable.server.broadcast 'team_channel', message: "started"
+        return pomodoro
+      end
     end
   end
 

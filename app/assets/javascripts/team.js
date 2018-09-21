@@ -4,13 +4,17 @@
  * here, you most likely would need to change it in pomodoros.js too
 **/
 (function() {
-  App.messages = App.cable.subscriptions.create('TeamChannel', {
-    received: function(data) {
-      return location.reload();
-    }
-  });
-
   $(function() {
+    if (!$('body').hasClass("rails_team")) {
+      return false;
+    }
+
+    App.messages = App.cable.subscriptions.create('TeamChannel', {
+      received: function(data) {
+        return location.reload();
+      }
+    });
+
     $('.team__remaining-seconds').each(function() {
       var remainingSeconds = parseInt($(this).text());
       var remainingMs = remainingSeconds * 1000;
