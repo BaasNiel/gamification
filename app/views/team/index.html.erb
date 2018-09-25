@@ -3,31 +3,59 @@
   <div class="row">
     <% @users.each do |user| %>
       <% if user.pomodoro_in_progress? %>
-        <div class="col-lg-4 col-sm-6 team__card">
-          <div class="panel panel-danger">
-            <div class="panel-heading">
-              <span class="team__user-full-name"><%= user.full_name %></span>
-              <span class="pull-right">Not Available</span>
-            </div>
-            <div class="panel-wrapper" >
-              <div class="panel-body">
-                <div class="row">
-                  <h4 class="text-center">
-                    <span class="team__remaining-seconds <%= user.current_pomodoro.status %>"><%= user.current_pomodoro.remaining_seconds %></span>
-                    remaining
-                  </h4>
-                </div>
-                <div class="row text-center">
-                  <a class="btn btn-danger m-t-10" style="color:white;">Request a chat</a>
-                </div>
+        <% if user.current_pomodoro.status == Pomodoro::Status::RUNNING %>
+          <div class="col-lg-4 col-sm-6 team__card">
+            <div class="panel panel-danger">
+              <div class="panel-heading">
+                <span class="team__user-full-name"><%= user.full_name %></span>
+                <span class="pull-right">Not Available</span>
               </div>
-              <div class="panel-footer">
-                <%= user.first_name %> has completed <%= user.pomodoros_today %>
-                <%= user.pomodoros_today == 1 ? "Pomodoro" : "Pomodoros" %> today
+              <div class="panel-wrapper" >
+                <div class="panel-body">
+                  <div class="row">
+                    <h4 class="text-center">
+                      <span class="team__remaining-seconds <%= user.current_pomodoro.status %>"><%= user.current_pomodoro.remaining_seconds %></span>
+                      remaining
+                    </h4>
+                  </div>
+                  <div class="row text-center">
+                    <a class="btn btn-danger m-t-10" style="color:white;">Request a chat</a>
+                  </div>
+                </div>
+                <div class="panel-footer">
+                  <%= user.first_name %> has completed <%= user.pomodoros_today %>
+                  <%= user.pomodoros_today == 1 ? "Pomodoro" : "Pomodoros" %> today
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        <% elsif user.current_pomodoro.status == Pomodoro::Status::PAUSED %>
+          <div class="col-lg-4 col-sm-6 team__card">
+            <div class="panel panel-warning">
+              <div class="panel-heading">
+                <span class="team__user-full-name"><%= user.full_name %></span>
+                <span class="pull-right">Pomodoro Paused</span>
+              </div>
+              <div class="panel-wrapper" >
+                <div class="panel-body">
+                  <div class="row">
+                    <h4 class="text-center">
+                      <span class="team__remaining-seconds <%= user.current_pomodoro.status %>"><%= user.current_pomodoro.remaining_seconds %></span>
+                      remaining
+                    </h4>
+                  </div>
+                  <div class="row text-center">
+                    <a class="btn btn-warning m-t-10" style="color:white;">Request a chat</a>
+                  </div>
+                </div>
+                <div class="panel-footer">
+                  <%= user.first_name %> has completed <%= user.pomodoros_today %>
+                  <%= user.pomodoros_today == 1 ? "Pomodoro" : "Pomodoros" %> today
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
       <% else %>
         <div class="col-lg-4 col-sm-6 team__card">
           <div class="panel panel-success">

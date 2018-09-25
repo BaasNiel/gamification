@@ -6,9 +6,9 @@ class UserAchievement < ApplicationRecord
     display_format = "%d %b %Y @ %H:%M:%S"
 
     if self.date_achieved.present?
-      date_achieved = self.date_achieved.strftime(display_format)
+      date_achieved = self.date_achieved.localtime.strftime(display_format)
     else
-      date_achieved = self.created_at.strftime(display_format)
+      date_achieved = self.created_at.localtime.strftime(display_format)
     end
 
     date_achieved

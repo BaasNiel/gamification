@@ -4,6 +4,8 @@ module PomodoroHelper
   end
 
   def to_display_time(datetime)
-    datetime.strftime("%Y/%m/%d %H:%M:%S") if datetime
+    if datetime && datetime.respond_to?(:localtime)
+      datetime.localtime.strftime("%Y/%m/%d %H:%M:%S")
+    end
   end
 end

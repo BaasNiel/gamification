@@ -1,7 +1,10 @@
 class PomodorosController < ApplicationController
   def index
     @pomodoro = Pomodoro.current_pomodoro current_user
-    @pomodoros = Pomodoro.where(user: current_user).order(created_at: :desc)
+    @pomodoros = Pomodoro
+                  .where(user: current_user)
+                  .order(created_at: :desc)
+                  .page params[:page]
   end
 
   def create
