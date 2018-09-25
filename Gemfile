@@ -40,6 +40,7 @@ gem 'momentjs-rails'
 gem "ruby-enum"
 gem "sidekiq"
 gem 'redis-namespace'
+gem 'kaminari'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
