@@ -29,11 +29,14 @@ class User < ApplicationRecord
   end
 
   def points_this_week
+    achievements_earned = achievements_this_week.map(&:achievement)
+    achievements_earned.map(&:points).sum
+  end
+
+  def achievements_this_week
     team = self.team
     start_of_week = Time.now.beginning_of_week(team.start_of_week_symbol)
-    user_achievements = self.user_achievements.where(date_achieved: start_of_week..Time.now)
-    achievements_earned = user_achievements.map(&:achievement)
-    achievements_earned.map(&:points).sum
+    self.user_achievements.where(date_achieved: start_of_week..Time.now)
   end
 
   def points_last_week

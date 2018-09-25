@@ -2,7 +2,7 @@ class ProfileController < ApplicationController
   before_action :set_user
 
   def index
-    @user_achievements = @user.user_achievements.order("date_achieved DESC, created_at DESC")
+    @user_achievements = @user.achievements_this_week.order("date_achieved DESC")
     @week_string = get_week_string
   end
 
