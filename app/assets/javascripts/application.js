@@ -75,12 +75,13 @@ $(function() {
           $("body").trigger("resize");
 
           $("body").removeClass("mini-sidebar");
+          $('.sidebar').css('overflow', 'hidden');
           $('.top-left-part span').show();
           $(".sidebartoggler i").addClass("fa fa-bars");
       } else {
           $("body").trigger("resize");
-
           $("body").addClass("mini-sidebar");
+          $('.sidebar').css('overflow', 'visible');
           $('.top-left-part span').hide();
           $(".sidebartoggler i").removeClass("fa fa-bars");
       }
