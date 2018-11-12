@@ -247,7 +247,11 @@ $(function() {
     var date_moment = moment.utc(new Date(date_text));
 
     if (!date_moment.isValid()) {
-      $(element).text('Invalid Date' + '(' + date_text + ')');
+      if (date_text != '') {
+        $(element).text('Invalid Date');
+      } else {
+        $(element).text('');
+      }
       return;
     }
 
