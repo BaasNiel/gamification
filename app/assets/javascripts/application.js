@@ -239,3 +239,18 @@ $(function() {
     return false;
   });
 });
+
+/* ========== Convert all dates to local, with MomentJS =========== */
+$(function() {
+  $('.datetime-field').each(function(index, element) {
+    var date_text = $(element).text();
+    var date_moment = moment.utc(new Date(date_text));
+
+    if (!date_moment.isValid()) {
+      $(element).text('Invalid Date' + '(' + date_text + ')');
+      return;
+    }
+
+    $(element).text(date_moment.local().format('D MMM YYYY @ HH:mm:ss'));
+  });
+});
