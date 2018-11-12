@@ -22,31 +22,31 @@
         <li>
           <%= active_link_to('/', class:"waves-effect", active: [['profile'], []]) do %>
             <i class="icon-screen-desktop fa-fw"></i>
-            <span> Dashboard </span>
+            <span class="hide-menu"> Dashboard </span>
           <% end %>
         </li>
         <li>
           <%= active_link_to(achievements_path, class:"waves-effect") do %>
             <i class="icon-star fa-fw"></i>
-            <span> Available Achievements </span>
+            <span class="hide-menu"> Available Achievements </span>
           <% end %>
         </li>
         <li>
           <%= active_link_to(user_achievements_path, class:"waves-effect") do %>
             <i class="icon-trophy fa-fw"></i>
-            <span> Achievements Earned </span>
+            <span class="hide-menu"> Achievements Earned </span>
           <% end %>
         </li>
         <li>
           <%= active_link_to('/team', class:"waves-effect") do %>
             <i class="icon-people fa-fw"></i>
-            <span> My Team </span>
+            <span class="hide-menu"> My Team </span>
           <% end %>
         </li>
         <li>
           <%= active_link_to(pomodoros_path, class:"waves-effect") do %>
             <i class="icon-clock fa-fw"></i>
-            <span> Pomodoros </span>
+            <span class="hide-menu"> Pomodoros </span>
           <% end %>
         </li>
 
@@ -57,7 +57,7 @@
           <li>
             <%= active_link_to(users_path, class:"waves-effect") do %>
               <i class="icon-shield fa-fw"></i>
-              <span> User Management </span>
+              <span class="hide-menu"> User Management </span>
             <% end %>
           </li>
         <% end %>

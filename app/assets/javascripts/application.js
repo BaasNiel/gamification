@@ -75,12 +75,13 @@ $(function() {
           $("body").trigger("resize");
 
           $("body").removeClass("mini-sidebar");
+          $('.sidebar').css('overflow', 'hidden');
           $('.top-left-part span').show();
           $(".sidebartoggler i").addClass("fa fa-bars");
       } else {
           $("body").trigger("resize");
-
           $("body").addClass("mini-sidebar");
+          $('.sidebar').css('overflow', 'visible');
           $('.top-left-part span').hide();
           $(".sidebartoggler i").removeClass("fa fa-bars");
       }
@@ -236,5 +237,20 @@ $(function() {
     event.preventDefault();
     $(this).parents(".myadmin-alert").fadeToggle(350);
     return false;
+  });
+});
+
+/* ========== Convert all dates to local, with MomentJS =========== */
+$(function() {
+  $('.datetime-field').each(function(index, element) {
+    var date_text = $(element).text();
+    var date_moment = moment.utc(new Date(date_text));
+
+    if (!date_moment.isValid()) {
+      $(element).text('Invalid Date' + '(' + date_text + ')');
+      return;
+    }
+
+    $(element).text(date_moment.local().format('D MMM YYYY @ HH:mm:ss'));
   });
 });
