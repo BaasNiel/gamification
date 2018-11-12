@@ -19,7 +19,7 @@ class UserAchievementsController < ApplicationController
   end
 
   def show_name_in_title
-    params[:id].present? && params[:id].present? != current_user.id
+    params[:id].present? && params[:id] != current_user.id
   end
 
   helper_method :show_name_in_title
