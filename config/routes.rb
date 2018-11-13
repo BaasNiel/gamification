@@ -31,5 +31,7 @@ Rails.application.routes.draw do
 
   root "profile#index"
 
+  get "admin/sprints", to: "admin_sprints#index"
+
   mount Sidekiq::Web => '/sidekiq'
 end
