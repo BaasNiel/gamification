@@ -1,8 +1,11 @@
-<h1>Mah sprints</h1>
-<% @sprints.each do |sprint| %>
-  <p><%= sprint.start_date %></p>
-  <p><%= sprint.end_date %></p>
-  <p><%= sprint.expected_score %></p>
-  <p><%= sprint.actual_score %></p>
-  <p><%= sprint.user.first_name %></p>
-<% end %>
+<div class="container-fluid">
+  <div class="white-box">
+    <% @sprints.each do |sprint| %>
+      <p><%= sprint.start_date %></p>
+      <p><%= sprint.end_date %></p>
+      <p><%= sprint.expected_score %></p>
+      <p><%= sprint.actual_score %></p>
+      <p><%= sprint.user.first_name %></p>
+    <% end %>
+  </div>
+</div>
