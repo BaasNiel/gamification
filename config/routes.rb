@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :achievements
   resources :users
   resources :pomodoros
+  resources :sprints
 
   get "profile/index"
   get "profile", to: "profile#index"
@@ -30,8 +31,6 @@ Rails.application.routes.draw do
   get "team", to: "team#index"
 
   root "profile#index"
-
-  get "admin/sprints", to: "admin_sprints#index"
 
   mount Sidekiq::Web => '/sidekiq'
 end
