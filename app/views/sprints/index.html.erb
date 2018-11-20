@@ -1,11 +1,13 @@
 <div class="container-fluid">
-  <div class="white-box">
+  <div class="white-box user-table">
     <div class="row">
-      <div class="col-md-12">
-        <div class="paginate pull-right">
-          <%= paginate @sprints %>
-        </div>
-        <h4 class="box-title"> Sprints </h4>
+      <div class="col-sm-6">
+        <h4 class="box-title">Sprints</h4>
+      </div>
+      <div class="col-sm-6">
+        <%= link_to new_sprint_path, class:"btn btn-success pull-right m-t-10 font-20" do %>
+          +
+        <% end %>
       </div>
     </div>
     <div class="table-responsive">
