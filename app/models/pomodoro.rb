@@ -89,11 +89,15 @@ class Pomodoro < ApplicationRecord
   end
 
   def start_time_formatted
-    self.start_time.strftime("%x %X")
+    self.start_time.strftime("%x %X %Z")
   end
 
   def end_time_formatted
-    self.end_time.strftime("%x %X")
+    if self.end_time?
+      self.end_time.strftime("%x %X %Z")
+    else
+      self.end_time
+    end
   end
 
   private
