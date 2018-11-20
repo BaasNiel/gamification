@@ -276,7 +276,7 @@ $(function() {
 $(function() {
   $('.datetime-field').each(function(index, element) {
     var date_text = $(element).text();
-    var date_moment = moment.utc(new Date(date_text));
+    var date_moment = moment(new Date(date_text));
 
     if (!date_moment.isValid()) {
       if (date_text != '') {
@@ -287,6 +287,6 @@ $(function() {
       return;
     }
 
-    $(element).text(date_moment.local().format('D MMM YYYY @ HH:mm:ss'));
+    $(element).text(date_moment.format('D MMM YYYY @ HH:mm:ss'));
   });
 });
