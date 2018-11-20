@@ -1,7 +1,47 @@
 <div class="container-fluid">
-  <div class="white-box text-center">
-    <% @sprints.each do |s| %>
-      <%= s.start_date %> <br>
-    <% end %>
+  <div class="white-box">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="paginate pull-right">
+          <%= paginate @sprints %>
+        </div>
+        <h4 class="box-title"> Sprints </h4>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="tablesaw table-striped table-bordered table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>User</th>
+            <% if current_user.admin? %>
+              <th>Team</th>
+            <% end %>
+            <th>Expected Score</th>
+            <th>Actual Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @sprints.each do |s| %>
+            <tr>
+              <td> <%= s.id %> </td>
+              <td class="datetime-field"><%= s.start_date %></td>
+              <td class="datetime-field"><%= s.end_date %></td>
+              <td><%= s.user.full_name %></td>
+              <% if current_user.admin? %>
+                <td><%= current_user.team.name %></td>
+              <% end %>
+              <td><%= s.expected_score %></td>
+              <td><%= s.actual_score %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="paginate pull-right">
+        <%= paginate @sprints %>
+      </div>
+    </div>
   </div>
 </div>
