@@ -62,8 +62,8 @@
             <% @pomodoros.each do |p| %>
               <tr>
                 <td> <%= p.id %> </td>
-                <td class="datetime-field"><%= p.start_time %></td>
-                <td class="datetime-field"><%= p.end_time %></td>
+                <td class="datetime-field"><%= p.start_time_formatted %></td>
+                <td class="datetime-field"><%= p.end_time_formatted %></td>
                 <td><%= seconds_to_timer_str(p.passed_seconds) %></td>
                 <td><%= p.pauses_count %></td>
                 <td><%= p.status %></td>
