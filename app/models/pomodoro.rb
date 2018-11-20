@@ -88,6 +88,18 @@ class Pomodoro < ApplicationRecord
     end
   end
 
+  def start_time_formatted
+    self.start_time.strftime("%x %X %Z")
+  end
+
+  def end_time_formatted
+    if self.end_time?
+      self.end_time.strftime("%x %X %Z")
+    else
+      self.end_time
+    end
+  end
+
   private
 
   def calculate_remaining_seconds

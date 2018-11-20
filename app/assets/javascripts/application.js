@@ -41,20 +41,61 @@ $(function() {
 
   $(".preloader").fadeOut('slow');
 
+
+  /* ========== Collapse and Expand Left Sidebar ========== */
+  var collapseLeftSidebar = function() {
+    // localStorage can only work with strings
+    localStorage.setItem('sidebar_collapsed', "true");
+
+    $("body").addClass("mini-sidebar");
+    $('.sidebar').css('overflow', 'visible');
+    $('.top-left-part span').hide();
+
+    /*
+      This is in a setTimeout because the element finishes rendering before the
+      classes are applied, so it renders before the class is actually added
+    */
+    setTimeout(function() {
+      $(".sidebartoggler i").addClass("fa fa-bars");
+    }, 0);
+  };
+
+  var expandLeftSidebar = function() {
+    // localStorage can only work with strings
+    localStorage.setItem('sidebar_collapsed', "false");
+
+    $("body").removeClass("mini-sidebar");
+    $('.sidebar').css('overflow', 'hidden');
+    $('.top-left-part span').show();
+
+    /*
+      This is in a setTimeout because the element finishes rendering before the
+      classes are applied, so it renders before the class is actually removed
+    */
+    setTimeout(function() {
+      $(".sidebartoggler i").removeClass("fa fa-bars");
+    }, 0);
+  };
+
+  /* ========== Apply Sidebar Preferences ========== */
+  var sidebar_collapsed = localStorage.getItem('sidebar_collapsed');
+
+  if (sidebar_collapsed === "true") {
+    collapseLeftSidebar();
+  }
+
   /* ========== Changes Takes Place On Body Resize Event ========== */
 
   var set = function() {
       var width = (window.innerWidth > 0) ? window.innerWidth : this.screen.width;
       var topOffset = 60;
-      if (width < 1170) {
-          $("body").addClass("mini-sidebar");
-          $('.top-left-part span').hide();
 
-          $(".sidebartoggler i").addClass("fa fa-bars");
+      if (width < 1170) {
+          collapseLeftSidebar()
       } else {
-          $("body").removeClass("mini-sidebar");
-          $('.top-left-part span').show();
-          $(".sidebartoggler i").removeClass("fa fa-bars");
+        if (sidebar_collapsed !== "true") {
+          expandLeftSidebar();
+        }
       }
 
       var height = ((window.innerHeight > 0) ? window.innerHeight : this.screen.height) - 1;
@@ -72,18 +113,9 @@ $(function() {
 
   $(".sidebartoggler").on('click', function() {
       if ($("body").hasClass("mini-sidebar")) {
-          $("body").trigger("resize");
-
-          $("body").removeClass("mini-sidebar");
-          $('.sidebar').css('overflow', 'hidden');
-          $('.top-left-part span').show();
-          $(".sidebartoggler i").addClass("fa fa-bars");
+        expandLeftSidebar();
       } else {
-          $("body").trigger("resize");
-          $("body").addClass("mini-sidebar");
-          $('.sidebar').css('overflow', 'visible');
-          $('.top-left-part span').hide();
-          $(".sidebartoggler i").removeClass("fa fa-bars");
+        collapseLeftSidebar();
       }
   });
 
@@ -244,7 +276,7 @@ $(function() {
 $(function() {
   $('.datetime-field').each(function(index, element) {
     var date_text = $(element).text();
-    var date_moment = moment.utc(new Date(date_text));
+    var date_moment = moment(new Date(date_text));
 
     if (!date_moment.isValid()) {
       if (date_text != '') {
@@ -255,6 +287,6 @@ $(function() {
       return;
     }
 
-    $(element).text(date_moment.local().format('D MMM YYYY @ HH:mm:ss'));
+    $(element).text(date_moment.format('D MMM YYYY @ HH:mm:ss'));
   });
 });
