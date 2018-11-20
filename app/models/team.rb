@@ -6,6 +6,8 @@ class Team < ApplicationRecord
   has_one :admin, class_name: "User"
   belongs_to :pomodoro_achievement, class_name: "Achievement", optional: true
 
+  has_many :sprints, through: :users
+
   # Returns a symbol for the team's start of week.
   # If nothing is set, :monday is returned
   def start_of_week_symbol

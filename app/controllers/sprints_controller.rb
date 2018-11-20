@@ -1,6 +1,10 @@
 class SprintsController < ApplicationController
   def index
-    @sprints = Sprint.all
+    if current_user.admin?
+      @sprints = Sprint.all
+    else
+      @sprints = current_user.team.sprints
+    end
   end
 
   def new
