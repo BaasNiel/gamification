@@ -9,6 +9,6 @@ class UserAchievement < ApplicationRecord
       date_achieved = self.created_at
     end
 
-    date_achieved
+    date_achieved.strftime("%x %X %Z")
   end
 end
