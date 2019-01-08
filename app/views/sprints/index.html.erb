@@ -29,8 +29,8 @@
           <% @sprints.each do |s| %>
             <tr>
               <td> <%= s.id %> </td>
-              <td class="datetime-field no-time"><%= s.start_date %></td>
-              <td class="datetime-field no-time"><%= s.end_date %></td>
+              <td class="datetime-field no-time"><%= s.start_date_formatted %></td>
+              <td class="datetime-field no-time"><%= s.end_date_formatted %></td>
               <td><%= s.user.full_name %></td>
               <% if current_user.admin? %>
                 <td><%= current_user.team.name %></td>
