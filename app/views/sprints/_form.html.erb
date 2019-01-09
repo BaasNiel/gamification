@@ -12,9 +12,37 @@
   <% end %>
 
   <div class="form-group">
+    <%= f.label :user, class: "col-sm-3 control-label" %>
+    <div class="col-md-9">
+      <%= select("sprint", "user_id", current_user.team.users.collect {|u| [ u.full_name, u.id ] }, { include_blank: true }) %>
+    </div>
+  </div>
+
+  <div class="form-group">
     <%= f.label :start_date, class: "col-sm-3 control-label" %>
     <div class="col-md-9">
       <%= f.date_field :start_date, id: :sprint_start_date, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :end_date, class: "col-sm-3 control-label" %>
+    <div class="col-md-9">
+      <%= f.date_field :end_date, id: :sprint_end_date, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :expected_score, class: "col-sm-3 control-label" %>
+    <div class="col-md-9">
+      <%= f.number_field :expected_score, id: :sprint_expected_score, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :actual_score, class: "col-sm-3 control-label" %>
+    <div class="col-md-9">
+      <%= f.number_field :actual_score, id: :sprint_actual_score, class: "form-control" %>
     </div>
   </div>
 
