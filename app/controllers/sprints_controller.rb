@@ -2,7 +2,12 @@ class SprintsController < ApplicationController
   before_action :set_sprint, only: [:edit, :update, :destroy]
 
   def index
-    @sprints = current_user.team.sprints.page(params[:page]).order(id: :desc)
+    if params.has_key?(:mine)
+      @mine = true
+      @sprints = current_user.sprints.page(params[:page]).order(id: :desc)
+    else
+      @sprints = current_user.team.sprints.page(params[:page]).order(id: :desc)
+    end
   end
 
   def new

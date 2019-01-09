@@ -2,7 +2,16 @@
   <div class="white-box user-table">
     <div class="row">
       <div class="col-sm-6">
-        <h4 class="box-title">Sprints</h4>
+        <h4 class="box-title">
+          Sprints
+          <span class="sprints__mine-filter">
+            <% if @mine %>
+              <%= link_to("(Show my team)", sprints_path, class: "mine-active"  ) %>
+            <% else %>
+              <%= link_to("(Show only mine)", sprints_path(:mine => "true"), class: "team-active") %>
+            <% end %>
+          </span>
+        </h4>
       </div>
       <% if current_user.admin? %>
         <div class="col-sm-6">
