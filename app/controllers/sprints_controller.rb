@@ -2,11 +2,7 @@ class SprintsController < ApplicationController
   before_action :set_sprint, only: [:edit, :update, :destroy]
 
   def index
-    if current_user.admin?
-      @sprints = Sprint.all.page params[:page]
-    else
-      @sprints = current_user.team.sprints.page params[:page]
-    end
+    @sprints = current_user.team.sprints.page(params[:page]).order(id: :desc)
   end
 
   def new

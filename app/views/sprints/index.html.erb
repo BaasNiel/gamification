@@ -20,9 +20,6 @@
             <th>Start</th>
             <th>End</th>
             <th>User</th>
-            <% if current_user.admin? %>
-              <th>Team</th>
-            <% end %>
             <th>Expected Score</th>
             <th>Actual Score</th>
             <% if current_user.admin? %> <th></th> <% end %>
@@ -35,9 +32,6 @@
               <td class="datetime-field no-time"><%= s.start_date_formatted %></td>
               <td class="datetime-field no-time"><%= s.end_date_formatted %></td>
               <td><%= s.user.full_name %></td>
-              <% if current_user.admin? %>
-                <td><%= current_user.team.name %></td>
-              <% end %>
               <td><%= s.expected_score %></td>
               <td><%= s.actual_score %></td>
               <% if current_user.admin? %>
