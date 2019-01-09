@@ -1,4 +1,6 @@
 class SprintsController < ApplicationController
+  before_action :set_sprint, only: [:edit, :update, :destroy]
+
   def index
     if current_user.admin?
       @sprints = Sprint.all.page params[:page]
@@ -9,6 +11,29 @@ class SprintsController < ApplicationController
 
   def new
     @sprint = Sprint.new
+  end
+
+  def edit
+  end
+
+  def update
+    respond_to do |format|
+      if @sprint.update(sprint_params)
+        format.html { redirect_to sprints_path, notice: 'Sprint was successfully updated.' }
+        format.json { render :show, status: :ok, location: @sprint }
+      else
+        format.html { render :edit }
+        format.json { render json: @sprint.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def destroy
+    @sprint.destroy
+    respond_to do |format|
+      format.html { redirect_to sprints_url, notice: 'Sprint was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
   def create
@@ -31,6 +56,9 @@ class SprintsController < ApplicationController
   end
 
   private
+    def set_sprint
+      @sprint = Sprint.find(params[:id])
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sprint_params
