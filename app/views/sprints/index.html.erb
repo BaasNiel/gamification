@@ -4,11 +4,13 @@
       <div class="col-sm-6">
         <h4 class="box-title">Sprints</h4>
       </div>
-      <div class="col-sm-6">
-        <%= link_to new_sprint_path, class:"btn btn-success pull-right m-t-10 font-20" do %>
-          +
-        <% end %>
-      </div>
+      <% if current_user.admin? %>
+        <div class="col-sm-6">
+          <%= link_to new_sprint_path, class:"btn btn-success pull-right m-t-10 font-20" do %>
+            +
+          <% end %>
+        </div>
+      <% end %>
     </div>
     <div class="table-responsive">
       <table class="tablesaw table-striped table-bordered table">
