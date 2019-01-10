@@ -21,45 +21,49 @@
         </div>
       <% end %>
     </div>
-    <div class="table-responsive">
-      <table class="tablesaw table-striped table-bordered table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Start</th>
-            <th>End</th>
-            <th>User</th>
-            <th>Expected Score</th>
-            <th>Actual Score</th>
-            <% if current_user.admin? %> <th></th> <% end %>
-          </tr>
-        </thead>
-        <tbody>
-          <% @sprints.each do |s| %>
+    <% if @sprints.count > 0 %>
+      <div class="table-responsive">
+        <table class="tablesaw table-striped table-bordered table">
+          <thead>
             <tr>
-              <td> <%= s.id %> </td>
-              <td class="datetime-field no-time"><%= s.start_date_formatted %></td>
-              <td class="datetime-field no-time"><%= s.end_date_formatted %></td>
-              <td><%= s.user.full_name %></td>
-              <td><%= s.expected_score %></td>
-              <td><%= s.actual_score %></td>
-              <% if current_user.admin? %>
-                <td>
-                  <%= link_to edit_sprint_path(s), { data: { toggle: "tooltip", original_title: "Edit" } } do %>
-                    <i class="fa fa-pencil action edit"></i>
-                  <% end %>
-                  <%= link_to s, method: :delete, data: { confirm: 'Are you sure?', toggle: "tooltip", original_title: "Delete" } do %>
-                    <i class="fa fa-trash action delete"></i>
-                  <% end %>
-                </td>
-              <% end %>
+              <th>ID</th>
+              <th>Start</th>
+              <th>End</th>
+              <th>User</th>
+              <th>Expected Score</th>
+              <th>Actual Score</th>
+              <% if current_user.admin? %> <th></th> <% end %>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <div class="paginate pull-right">
-        <%= paginate @sprints %>
+          </thead>
+          <tbody>
+            <% @sprints.each do |s| %>
+              <tr>
+                <td> <%= s.id %> </td>
+                <td class="datetime-field no-time"><%= s.start_date_formatted %></td>
+                <td class="datetime-field no-time"><%= s.end_date_formatted %></td>
+                <td><%= s.user.full_name %></td>
+                <td><%= s.expected_score %></td>
+                <td><%= s.actual_score %></td>
+                <% if current_user.admin? %>
+                  <td>
+                    <%= link_to edit_sprint_path(s), { data: { toggle: "tooltip", original_title: "Edit" } } do %>
+                      <i class="fa fa-pencil action edit"></i>
+                    <% end %>
+                    <%= link_to s, method: :delete, data: { confirm: 'Are you sure?', toggle: "tooltip", original_title: "Delete" } do %>
+                      <i class="fa fa-trash action delete"></i>
+                    <% end %>
+                  </td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <div class="paginate pull-right">
+          <%= paginate @sprints %>
+        </div>
       </div>
-    </div>
+    <% else %>
+      <p>No sprints, yet. Only admins can create sprints.</p>
+    <% end %>
   </div>
 </div>
