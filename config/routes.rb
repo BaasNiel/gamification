@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :achievements
   resources :users
   resources :pomodoros
+  resources :sprints
 
   get "profile/index"
   get "profile", to: "profile#index"

@@ -1,0 +1,69 @@
+<div class="container-fluid">
+  <div class="white-box user-table">
+    <div class="row">
+      <div class="col-sm-6">
+        <h4 class="box-title">
+          Sprints
+          <span class="sprints__mine-filter">
+            <% if @mine %>
+              <%= link_to("(Show my team)", sprints_path, class: "mine-active"  ) %>
+            <% else %>
+              <%= link_to("(Show only mine)", sprints_path(:mine => "true"), class: "team-active") %>
+            <% end %>
+          </span>
+        </h4>
+      </div>
+      <% if current_user.admin? %>
+        <div class="col-sm-6">
+          <%= link_to new_sprint_path, class:"btn btn-success pull-right m-t-10 font-20" do %>
+            +
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <% if @sprints.count > 0 %>
+      <div class="table-responsive">
+        <table class="tablesaw table-striped table-bordered table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Start</th>
+              <th>End</th>
+              <th>User</th>
+              <th>Expected Score</th>
+              <th>Actual Score</th>
+              <% if current_user.admin? %> <th></th> <% end %>
+            </tr>
+          </thead>
+          <tbody>
+            <% @sprints.each do |s| %>
+              <tr>
+                <td> <%= s.id %> </td>
+                <td class="datetime-field no-time"><%= s.start_date_formatted %></td>
+                <td class="datetime-field no-time"><%= s.end_date_formatted %></td>
+                <td><%= s.user.full_name %></td>
+                <td><%= s.expected_score %></td>
+                <td><%= s.actual_score %></td>
+                <% if current_user.admin? %>
+                  <td>
+                    <%= link_to edit_sprint_path(s), { data: { toggle: "tooltip", original_title: "Edit" } } do %>
+                      <i class="fa fa-pencil action edit"></i>
+                    <% end %>
+                    <%= link_to s, method: :delete, data: { confirm: 'Are you sure?', toggle: "tooltip", original_title: "Delete" } do %>
+                      <i class="fa fa-trash action delete"></i>
+                    <% end %>
+                  </td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <div class="paginate pull-right">
+          <%= paginate @sprints %>
+        </div>
+      </div>
+    <% else %>
+      <p>No sprints, yet. Only admins can create sprints.</p>
+    <% end %>
+  </div>
+</div>

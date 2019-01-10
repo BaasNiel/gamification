@@ -287,6 +287,10 @@ $(function() {
       return;
     }
 
-    $(element).text(date_moment.format('D MMM YYYY @ HH:mm:ss'));
+    if ($(element).hasClass('no-time')) {
+      $(element).text(date_moment.format('D MMM YYYY'));
+    } else {
+      $(element).text(date_moment.format('D MMM YYYY @ HH:mm:ss'));
+    }
   });
 });
